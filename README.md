@@ -1,7 +1,6 @@
-# Enber OSF Dashboard
+# Ember OSF Dashboard
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This project is for creating a Ember Dashboard on top of [OSF](http://osf.io)
 
 ## Prerequisites
 
@@ -12,17 +11,22 @@ You will need the following things properly installed on your computer.
 * [Bower](http://bower.io/)
 * [Ember CLI](http://ember-cli.com/)
 * [PhantomJS](http://phantomjs.org/)
+* [ember-osf](http://github.com/centerforopenscience/ember-osf.git)
 
 ## Installation
 
 * `git clone <repository-url>` this repository
-* change into the new directory
-* `npm install`
+* `git clone https://github.com/centerforopenscience/ember-osf.gig
+* `cd` into the new app directory
+* `sudo npm install`
+* `bower install`
+* go back one directory and `cd` into ember-osf directory
+* `sudo npm install`
 * `bower install`
 
 ## Running / Development
 
-* `ember server`
+* `ember server` or `ember server --environment <chosen environment>
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 
 ### Code Generators
