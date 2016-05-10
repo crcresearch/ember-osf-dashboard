@@ -1,0 +1,30 @@
+{{#each model as |node|}}
+    gggggg
+    {{#each node.files as |provider|}}
+        fffff
+        {{#each provider.files as |folder|}}
+            eeee
+            {{#if (eq folder.kind "folder")}}
+                dddd<br>
+                {{folder.name}}
+                {{#if (eq folder.name "AAAA")}}
+                    cccc
+                    {{#each folder.files as |file|}}
+                        bbb
+                        {{#if (eq file.kind "file")}}
+                            aaa
+                        {{/if}}
+                    {{/each}}
+                {{/if}}
+            {{/if}}
+        {{/each}}
+    {{/each}}
+{{/each}}
+
+{{#each folder.files as |file|}}
+                                    {{#if (eq file.kind "file")}}
+                                        <option value="abc">
+                                            {{file.name}} (place)
+                                        </option>
+                                    {{/if}}
+                                {{/each}}

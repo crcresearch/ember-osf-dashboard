@@ -1,26 +1,50 @@
 {{link-to 'Back to list' 'nodes' class="btn btn-default"}}
 <div class="panel">
-  <p><label>Title: </label>{{model.title}}</p>
-  <p><label>Category: </label>{{model.category}}</p>
-  <p><label>Date Created: </label>{{moment-format model.dateCreated}}</p>
-  <p><label>Date Modified: </label>{{moment-format model.dateModified}}</p>
-  <p>
-    <a href="{{model.links.html}}" target="_blank" class="btn btn-primary">
-      View on OSF
-    </a>
-  </p>
-  <hr>
-  <p>
-    <label>Contributors</label>
-    <p>
-      <table class="table">
-	{{#each model.contributors as |contrib|}}
-	  <tr>
-	    {{contrib.bibliographic}}
-	  </tr>	     
-	{{/each}}
-      </table>
-    </p>
-  </p>
-</div>
+    <p><label>Title: </label>{{model.title}}</p>
+    <p><label>Category: </label>{{model.category}}</p>
+    <p><label>Date Created: </label>{{moment-format model.dateCreated}}</p>
+    <p><label>Date Modified: </label>{{moment-format model.dateModified}}</p>
+    <p><label>Current User Permissions: </label>{{model.currentUserPermissions}}</p>
+    <p><label>Is a Fork: </label>{{model.fork}} </p>
+    <p><label>Is a Collection: </label>{{model.collection}}</p>
+    <p><label>Is Registrated: </label>{{model.registration}}</p>
+    <p><label>Is Public: </label>{{model.public}}</p>
 
+    <p><label> tags: </label>{{model.tags}}</p>
+    <p><label> templateFrom: </label>{{model.templateFrom}}</p>
+
+    <p><label>Parent: </label>{{model.parent}}</p>
+    <p>
+        <label>Children: </label>
+        {{#each model.children as |child|}}
+            {{child.title}}
+        {{/each}}
+    </p>
+
+    <p><label>comments: </label>{{model.comments}}</p>
+    <p><label>files: </label>{{model.files}}</p>
+    {{!-- <p><label>Forked From: </label>{{model.forkedFrom.title}}</p> --}}
+    {{!-- <p><label>nodeLinks: </label>{{model.nodeLinks}}</p> --}}
+    {{!-- <p><label>registrations: </label>{{model.registrations}}</p> --}}
+    {{!-- <p><label>primaryInstitution: </label>{{model.primaryInstitution}}</p> --}}
+    <p><label>root: </label>{{model.root.title}}</p>
+    <!--<p><label>logs: </label>{{model.logs}}</p>-->
+    <p>
+        <label>Contributors</label>
+        <p>
+            <table class="table">
+                {{#each model.contributors as |contrib|}}
+                    <tr>
+                        {{contrib.bibliographic}}
+                    </tr>
+                {{/each}}
+            </table>
+        </p>
+    </p>
+    <p>
+        <a href="{{model.links.html}}" target="_blank" class="btn btn-primary">
+            View on OSF
+        </a>
+    </p>
+    <hr>
+</div>

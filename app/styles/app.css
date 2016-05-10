@@ -1,0 +1,13 @@
+/** app/styles/app.css **/
+h1, h2, h3, h4, h5 {
+    text-decoration: none;
+}
+
+img.img-head{
+    padding-right: 10px;
+    width: 48px !important;
+}
+
+.ui.header {
+    margin-bottom: 15px !important;
+}
