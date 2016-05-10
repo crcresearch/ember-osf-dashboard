@@ -1,34 +1,39 @@
 <!-- app/templates/navbar.hbs -->
-<div class="ui secondary menu">
-    <!-- Header -->
-    {{#link-to 'index' class="header item"}}
-        <img src="assets/images/pentagon_icon.png" alt="Ember OSF Dashboard (Beta)" title="Ember OSF Dashboard" class="img-head" width="48px"/>
-        Ember OSF Dashboard Beta
-    {{/link-to}}
 
-    <!-- Start Menu -->
-    {{#link-to 'dashboard' class="item"}}
-        Dashboard
-    {{/link-to}}
-    {{#link-to 'nodes' class="item"}}
-        Nodes
-    {{/link-to}}
-
-    <!-- Search -->
-    <div class="right menu">
-        <div class="item">
-            {{#ui-search url="/search"}}
-                <div class="ui icon input">
-                    <input type="text" class="prompt" placeholder="Search..." />
-                    <i class="search link icon"></i>
-                </div>
-                <div class="results"></div>
-            {{/ui-search}}
+    <div class="ui secondary menu">
+        <div class="ui container">
+        <!-- Header -->
+        <div class="header item header-fit">
+            {{#link-to 'index' class="header-link"}}
+                <img src="assets/images/pentagon_icon.png" alt="Ember OSF Dashboard (Beta)" title="Ember OSF Dashboard" class="img-head" width="48px"/>
+                <span>Ember OSF Dashboard (Beta)</span>
+            {{/link-to}}
         </div>
 
-    <!-- Logout -->
-        <a class="ui item">
-            Logout
-        </a>
+        <!-- Start Menu -->
+        {{#link-to 'dashboard' class="item"}}
+            Dashboard
+        {{/link-to}}
+        {{#link-to 'nodes' class="item"}}
+            Nodes
+        {{/link-to}}
+
+        <!-- Search -->
+        <div class="right menu">
+            <div class="item">
+                {{#ui-search url="/search"}}
+                    <div class="icon input">
+                        <input type="text" class="prompt" placeholder="Search..." />
+                        <i class="search link icon"></i>
+                    </div>
+                    <div class="results"></div>
+                {{/ui-search}}
+            </div>
+
+        <!-- Logout -->
+            <a class="item">
+                Logout
+            </a>
+        </div>
     </div>
 </div>

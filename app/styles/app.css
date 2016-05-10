@@ -3,11 +3,28 @@ h1, h2, h3, h4, h5 {
     text-decoration: none;
 }
 
-img.img-head{
-    padding-right: 10px;
-    width: 48px !important;
+.header-fit {
+    margin: 3px 0 3px 0 !important;
+    padding-left: 0 !important;
 }
 
-.ui.header {
-    margin-bottom: 15px !important;
+.img-head {
+    width: 38px !important;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+}
+
+.img-head + span {
+    margin-left: 10px;
+}
+
+.header-link {
+    color: black;
+}
+
+.header-link:hover,
+.header-link:focus,
+.header-link:visited {
+    color: black;
 }
