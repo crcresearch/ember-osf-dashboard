@@ -1,7 +1,6 @@
 <!-- app/templates/navbar.hbs -->
-
-    <div class="ui secondary menu">
-        <div class="ui container">
+<div class="ui secondary menu">
+    <div class="ui container">
         <!-- Header -->
         <div class="header item header-fit">
             {{#link-to 'index' class="header-link"}}
@@ -15,7 +14,7 @@
             Dashboard
         {{/link-to}}
         {{#link-to 'nodes' class="item"}}
-            Nodes
+            Projects
         {{/link-to}}
 
         <!-- Search -->
@@ -24,13 +23,13 @@
                 {{#ui-search url="/search"}}
                     <div class="icon input">
                         <input type="text" class="prompt" placeholder="Search..." />
-                        <i class="search icon"></i>
+                        <i class="ui search icon"></i>
                     </div>
                     <div class="results"></div>
                 {{/ui-search}}
             </div>
 
-        <!-- Logout -->
+            <!-- Logout -->
             <a class="item">
                 Logout
             </a>

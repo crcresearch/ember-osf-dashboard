@@ -1,18 +1,22 @@
-<h4> My Nodes </h4>
-<button {{action "createNew"}} class="ui button">Create Record</button>
+<!-- app/templates/nodes/index.hbs -->
+<h2 class="ui header">My Projects</h2>
+<button {{action "createNew"}} class="ui primary button">Create Record</button>
 
 {{#each model as |node|}}
-<hr />
-<div class="">
-  <p><label>Title: </label>{{node.title}}</p>
-  <p><label>Category: </label>{{node.category}}</p>
-  <p><label>Date Created: </label>{{moment-format node.dateCreated}}</p>
-  <p><label>Date Modified: </label>{{moment-format node.dateModified}}</p>
-  <p class="">
-    <a href="{{node.links.html}}" target="_blank" class="">
-      View on OSF
-    </a>
-    {{link-to 'Detail' 'nodes.detail' node.id class=""}}
-  </p>
-</div>
+    <div class="ui segments">
+        <div class="ui segment">
+            <label class="bold">Title: </label>{{node.title}}<br />
+            <label class="bold">Category: </label>{{node.category}}<br />
+            <label class="bold">Date Created: </label>{{moment-format node.dateCreated}}<br />
+            <label class="bold">Date Modified: </label>{{moment-format node.dateModified}}
+        </div>
+        <div class="ui segment">
+            <div class="ui buttons">
+                <a href="{{node.links.html}}" target="_blank" class="ui green button">
+                    View on OSF
+                </a>
+                {{link-to 'Detail' 'nodes.detail' node.id class="ui primary button"}}
+            </div>
+        </div>
+    </div>
 {{/each}}

@@ -1,88 +1,80 @@
-<h4> My Dashboard </h4>
+<!-- app/templates/dashboard.hbs -->
+<h2 class="ui header">My Dashboard</h2>
+<div class="ui segment">
+    <p><label class="bold">Total Projects:</label> {{model.length}}</p>
+</div>
 
-Total Nodes: {{model.length}}
-
-<div class="well well-lg">
-    <div class="row">
-        <div class="col-md-3">
-            <p style="font-size: 18px">
-                Execution Dashboard in Node AWESOME
-            </p>
+<!-- Execution Dashboard -->
+<div class="ui segment">
+    <h4 class="ui header">Execution Dashboard</h4>
+    <!-- Three Column Grid -->
+    <div class="ui three column very relaxed grid">
+        <!-- Column One -->
+        <div class="ui column">
+            <div class="ui buttons">
+                <button type="button" class="ui button">
+                    Run <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="ui button">
+                    Reset <span class="glyphicon glyphicon-eject" aria-hidden="true"></span>
+                </button>
+            </div>
         </div>
 
-        <div class="col-md-1">
-            <span class="pull-right" style="font-size: 30px;">
-                <label> Data </label>
-            </span>
-        </div>
-
-        <div class="col-md-4">
-            <select id="data-select" class="form-control">
-                {{#each model as |node|}}
-                    {{#each node.files as |provider|}}
-                        {{#each provider.files as |file|}}
-                            <option value="{{file.path}}">
-                                {{file.name}} ({{file.provider}})
-                            </option>
+        <!-- Column Two -->
+        <div class="ui column">
+            <div>
+                <span class="pull-right" style="">
+                    <label class="bold"> Data </label>
+                </span>
+                <select id="data-select" class="form-control">
+                    {{#each model as |node|}}
+                        {{#each node.files as |provider|}}
+                            {{#each provider.files as |file|}}
+                                <option value="{{file.path}}">
+                                    {{file.name}} ({{file.provider}})
+                                </option>
+                            {{/each}}
                         {{/each}}
                     {{/each}}
-                {{/each}}
-            </select>
+                </select>
+            </div>
+
+            <div>
+                <span class="pull-right" style="">
+                    <label class="bold"> Mode </label>
+                </span>
+                <select class="form-control">
+                    <option value="Execute Script"> Execute Script </option>
+                    <option value="Run Notebook"> Run Notebook </option>
+                </select>
+            </div>
         </div>
 
-        <div class="col-md-1">
-            <span class="pull-right" style="font-size: 30px;">
-                <label> Mode </label>
-            </span>
-        </div>
-
-        <div class="col-md-3">
-            <select class="form-control">
-                <option value="Execute Script"> Execute Script </option>
-                <option value="Run Notebook"> Run Notebook </option>
-            </select>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-3">
-            <button type="button" class="btn btn-success">
-                Run <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
-            </button>
-
-            <button type="button" class="btn btn-danger">
-                Reset <span class="glyphicon glyphicon-eject" aria-hidden="true"></span>
-            </button>
-        </div>
-
-        <div class="col-md-1">
-            <span class="pull-right" style="font-size: 30px;">
-                <label> Script </label>
-            </span>
-        </div>
-
-        <div class="col-md-4">
-            <select id="script-select" class="form-control">
-                {{#each model as |node|}}
-                    {{#each node.files as |provider|}}
-                        {{#each provider.files as |file|}}
-                            <option value="{{file.path}}">
-                                {{file.name}} ({{file.provider}})
-                            </option>
+        <!-- Column Three -->
+        <div class="ui column">
+            <div>
+                <span class="pull-right" style="font-size: 30px;">
+                    <label> Script </label>
+                </span>
+                <select id="script-select" class="form-control">
+                    {{#each model as |node|}}
+                        {{#each node.files as |provider|}}
+                            {{#each provider.files as |file|}}
+                                <option value="{{file.path}}">
+                                    {{file.name}} ({{file.provider}})
+                                </option>
+                            {{/each}}
                         {{/each}}
                     {{/each}}
-                {{/each}}
-            </select>
-        </div>
-
-        <div class="col-md-1">
-            <span class="pull-right" style="font-size: 30px;">
-                <label> Status </label>
-            </span>
-        </div>
-
-        <div class="col-md-3">
-            <input type="text" class="form-control" id="status-text" value="Ready" readonly />
+                </select>
+            </div>
+            <div>
+                <span class="pull-right" style="font-size: 30px;">
+                    <label> Status </label>
+                </span>
+                <input type="text" class="form-control" id="status-text" value="Ready" readonly />
+            </div>
         </div>
     </div>
 </div>
@@ -174,7 +166,7 @@ Total Nodes: {{model.length}}
             {{/if}}
 
         {{/each}}
-        
+
         {{!-- <p><label> Forked From: </label> {{node.forkedFrom}} </p> --}}
         <!--<p><label> nodeLinks: </label> {{node.nodeLinks}} </p>-->
         <!--<p><label> registrations: </label> {{node.registrations}} </p>-->
