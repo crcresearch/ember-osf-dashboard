@@ -1,16 +1,18 @@
 <h4> My Nodes </h4>
+<button {{action "createNew"}} class="">Create Record</button>
+
 {{#each model as |node|}}
 <hr />
-<div class="panel">
+<div class="">
   <p><label>Title: </label>{{node.title}}</p>
   <p><label>Category: </label>{{node.category}}</p>
   <p><label>Date Created: </label>{{moment-format node.dateCreated}}</p>
   <p><label>Date Modified: </label>{{moment-format node.dateModified}}</p>
-  <p class="btn-group">
-    <a href="{{node.links.html}}" target="_blank" class="btn btn-default">
+  <p class="">
+    <a href="{{node.links.html}}" target="_blank" class="">
       View on OSF
     </a>
-    {{link-to 'Detail' 'nodes.detail' node.id class="btn btn-primary"}}
+    {{link-to 'Detail' 'nodes.detail' node.id class=""}}
   </p>
 </div>
 {{/each}}

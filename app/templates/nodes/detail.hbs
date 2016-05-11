@@ -1,5 +1,6 @@
 {{link-to 'Back to list' 'nodes' class="btn btn-default"}}
-<div class="panel">
+<div class="">
+    <h2>Data</h2>
     <p><label>Title: </label>{{model.title}}</p>
     <p><label>Category: </label>{{model.category}}</p>
     <p><label>Date Created: </label>{{moment-format model.dateCreated}}</p>
@@ -31,20 +32,35 @@
     <!--<p><label>logs: </label>{{model.logs}}</p>-->
     <p>
         <label>Contributors</label>
-        <p>
-            <table class="table">
-                {{#each model.contributors as |contrib|}}
-                    <tr>
+        <table class="table">
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Author?
+                </th>
+            </tr>
+            {{#each model.contributors as |contrib|}}
+                <tr>
+                    <td>
+                        {{contrib.id}}
+                    </td>
+                    <td>
                         {{contrib.bibliographic}}
-                    </tr>
-                {{/each}}
-            </table>
-        </p>
+                    </td>
+                </tr>
+            {{/each}}
+        </table>
     </p>
     <p>
-        <a href="{{model.links.html}}" target="_blank" class="btn btn-primary">
+        <a href="{{model.links.html}}" target="_blank" class="">
             View on OSF
         </a>
     </p>
     <hr>
+
+    <h2>Edit This Node</h2>
+    Title: {{input value=editedTitle}}
+    <button {{action "editExisting" editedTitle}} class="">Edit Record</button>
 </div>
