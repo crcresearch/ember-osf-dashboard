@@ -20,11 +20,10 @@ You will need the following things properly installed on your computer.
 *   `cd` into the new app directory
 *   `npm install`
 *   `bower install`
+*   Read instruction on the ember-osf repository for installation and configuration.
 *   `cd` into ember-osf directory
 *   `npm install`
 *   `bower install`
-*   Comment out all instances of "Bootstrap" in the ember-cli-build.js file that is in ember-osf.  Remove the dependency of "Bootstrap" in the bower.json file in ember-osf.
-*   Commit your changes to the ember-osf app.  Now when you pull changes down to ember-osf, your changes to these two files will merge.
 *   Add your token and client ID to the .env-stage file.
 
 ## Running / Development
