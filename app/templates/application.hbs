@@ -1,5 +1,10 @@
 <!-- app/templates/application.hbs -->
-{{partial 'navbar'}}
-<div class="ui container">
-    {{outlet}}
+<div class="context">
+    {{partial 'sidebar'}}
+    <div class="pusher">
+        {{partial 'navbar'}}
+        <div class="ui container pusher">
+            {{outlet}}
+        </div>
+    </div>
 </div>

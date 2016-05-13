@@ -1,6 +1,6 @@
 <!-- app/templates/navbar.hbs -->
-<div class="ui secondary menu">
-    <div class="ui container">
+<div class="ui container desktop-menu">
+    <div class="ui secondary menu">
         <!-- Header -->
         <div class="header item header-fit">
             {{#link-to 'index' class="header-link"}}
@@ -17,8 +17,8 @@
             Projects
         {{/link-to}}
 
-        <!-- Search -->
         <div class="right menu">
+            <!-- Search -->
             <div class="item">
                 {{#ui-search url="/search"}}
                     <div class="icon input">
@@ -29,6 +29,22 @@
                 {{/ui-search}}
             </div>
 
+            <!-- Logout -->
+            <a class="item">
+                Logout
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="ui container mobile-menu">
+    <div class="ui fluid secondary menu">
+        <div {{action "menuTransition"}}class="item menu-toggle">
+            <i class="sidebar icon"></i>
+            Menu
+        </div>
+        
+        <div class="right menu">
             <!-- Logout -->
             <a class="item">
                 Logout

@@ -8,5 +8,10 @@ export default Ember.Route.extend({
             return this.get('store').findRecord('user', 'me');
         }
         return null;
+    },
+    actions: {
+        menuTransition() {
+            $('.left.mobile-menu.sidebar').sidebar('attach events', '.item.menu-toggle');
+        }
     }
 });
