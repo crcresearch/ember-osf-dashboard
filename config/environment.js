@@ -16,6 +16,10 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+    'ember-simple-auth': {
+        authenticationRoute: 'login',
+        routeAfterAuthentication: 'index'
     }
   };
 
@@ -38,10 +42,12 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
   }
-
-  if (environment === 'production') {
-
+  if (environment === 'staging') {
+    ENV.APP.LOG_TRANSITIONS = true;
   }
-
+  if (environment === 'staging2') {
+    ENV.APP.LOG_TRANSITIONS = true;
+  }
+  if (environment === 'production') {}
   return ENV;
 };
