@@ -1,4 +1,5 @@
 <!-- app/templates/navbar.hbs -->
+<!-- Desktop Menu -->
 <div class="ui container desktop-menu">
     <div class="ui secondary menu">
         <!-- Header -->
@@ -37,18 +38,34 @@
     </div>
 </div>
 
+<!-- Mobile Menu -->
 <div class="ui container mobile-menu">
-    <div class="ui fluid secondary menu">
-        <div {{action "menuTransition"}}class="item menu-toggle">
-            <i class="sidebar icon"></i>
-            Menu
-        </div>
-        
-        <div class="right menu">
-            <!-- Logout -->
-            <a class="item">
-                Logout
-            </a>
-        </div>
+    <div class="ui secondary menu">
+        {{#ui-accordion class="ui fluid"}}
+            <!-- Header -->
+            <div class="title header">
+                <div class="header item header-fit">
+                    {{#link-to 'index' class="header-link"}}
+                        <img src="assets/images/pentagon_icon.png" alt="Ember OSF Dashboard (Beta)" title="Ember OSF Dashboard" class="img-head" width="48px"/>
+                        <span>Ember OSF Dashboard (Beta)</span>
+                    {{/link-to}}
+                </div>
+            </div>
+            <div class="content">
+                {{#link-to 'index' class="item"}}
+                    Home
+                {{/link-to}}
+                {{#link-to 'dashboard' class="item"}}
+                    Dashboard
+                {{/link-to}}
+                {{#link-to 'nodes' class="item"}}
+                    Projects
+                {{/link-to}}
+                <!-- Logout -->
+                <a class="item">
+                    Logout
+                </a>
+            </div>
+        {{/ui-accordion}}
     </div>
 </div>

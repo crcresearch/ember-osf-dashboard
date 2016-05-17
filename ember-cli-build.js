@@ -17,6 +17,11 @@ module.exports = function(defaults) {
         }
     });
 
+    app.import({
+        development: 'bower_components/semantic-ui/dist/semantic.css',
+        production: 'bower_components/semantic-ui/dist/semantic.min.css'
+    });
+
     /*app.import('bower_components/bootstrap/dist/css/bootstrap.min.css');
     app.import('bower_components/bootstrap/dist/css/bootstrap-theme.min.css');
     app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');

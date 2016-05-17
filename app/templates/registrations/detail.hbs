@@ -1,3 +1,4 @@
+<!-- app/templates/registrations/detail.hbs -->
 {{link-to 'Back to list' 'registrations' class="btn btn-default"}}
 <div class="panel">
   <p><label>Title: </label>{{model.title}}</p>
@@ -8,7 +9,7 @@
       View on OSF
     </a>
   </p>
-  
+
   <p>{{link-to 'Node Registered' 'nodes.detail' model.registeredFrom.id class="btn btn-warning"}}
   </p>
 

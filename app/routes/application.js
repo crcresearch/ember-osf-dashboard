@@ -11,7 +11,9 @@ export default Ember.Route.extend({
     },
     actions: {
         menuTransition() {
-            $('.left.mobile-menu.sidebar').sidebar('attach events', '.item.menu-toggle');
+            $('.left.mobile-menu.sidebar')
+            // .sidebar('setting', 'transition', 'overlay')
+            .sidebar('attach events', '.item.menu-toggle');
         }
     }
 });
