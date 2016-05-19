@@ -1,28 +1,56 @@
 <!-- app/templates/nodes/index.hbs -->
 <h2 class="ui header">My Projects</h2>
-<div>
-  <label>Title:</label>
-  {{input type="text" value=title placeholder="Project Title" required=true}}
-  <label>Description (optional):</label>
-  {{input type="text" value=description placeholder="Project Description"}}
-  <p><button {{action "createNode" title description}}>Create Project</button></p>
-</div>
-
-{{#each model as |node|}}
-    <div class="ui segments">
-        <div class="ui segment">
-            <label class="bold">Title: </label>{{node.title}}<br />
-            <label class="bold">Category: </label>{{node.category}}<br />
-            <label class="bold">Date Created: </label>{{moment-format node.dateCreated}}<br />
-            <label class="bold">Date Modified: </label>{{moment-format node.dateModified}}
-        </div>
-        <div class="ui segment">
-            <div class="ui buttons">
-                <a href="{{node.links.html}}" target="_blank" class="ui green button">
-                    View on OSF
-                </a>
-                {{link-to 'Detail' 'nodes.detail' node.id class="ui primary button"}}
+<div class="ui segments">
+    <div class="ui segment">
+        <div class="ui two column stackable grid">
+            <div class="column">
+                <label class="bold">Title:</label>
+                <div class="ui fluid input">
+                    {{input type="text" value=title placeholder="Project Title" required=true}}
+                </div>
+            </div>
+            <div class="column">
+                <label class="bold">Description (optional):</label>
+                <div class="ui fluid input">
+                    {{input type="text" value=description placeholder="Project Description"}}
+                </div>
             </div>
         </div>
     </div>
-{{/each}}
+    <div class="ui secondary segment">
+        <div class="row">
+            <div class="column">
+                <button type="button" {{action 'createNode' title description}} class="ui green button">Create Project</button>
+            </div>
+        </div>
+    </div>
+    {{#if responseMessage}}
+        <div class="ui bottom attached positive message create-project">
+            <i class="close icon" {{action 'closeMessage'}}></i>
+            {{responseMessage}}
+        </div>
+    {{/if}}
+</div>
+
+<div class="ui three column stackable grid">
+    {{#each model as |node|}}
+        <div class="ui column">
+            <div class="ui segments">
+                <div class="ui segment">
+                    <label class="bold">Title: </label>{{node.title}}<br />
+                    <label class="bold">Category: </label>{{node.category}}<br />
+                    <label class="bold">Date Created: </label>{{moment-format node.dateCreated}}<br />
+                    <label class="bold">Date Modified: </label>{{moment-format node.dateModified}}
+                </div>
+                <div class="ui secondary segment">
+                    <div class="ui buttons">
+                        <a href="{{node.links.html}}" target="_blank" class="ui green button">
+                            View on OSF
+                        </a>
+                        {{link-to 'Detail' 'nodes.detail' node.id class="ui primary button"}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>

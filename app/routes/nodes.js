@@ -12,13 +12,5 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         else {
             return this.get('store').findRecord('user', 'me').then(user => user.get('nodes'));
         }
-    },
-    actions: {
-        createNew() {
-            // TODO: Just hardcode a payload here, tests POST
-            console.log('button was clicked');
-            //var record = this.store.createRecord('node', {}); // TODO write
-            //record.save();
-        }
     }
 });

@@ -10,9 +10,9 @@ export default Ember.Route.extend({
         return null;
     },
     actions: {
-        menuTransition() {
+        menuSidebarTransition() {
             $('.left.mobile-menu.sidebar')
-            // .sidebar('setting', 'transition', 'overlay')
+            .sidebar('setting', 'transition', 'overlay')
             .sidebar('attach events', '.item.menu-toggle');
         }
     }
