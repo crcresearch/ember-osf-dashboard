@@ -1,4 +1,3 @@
-<!-- app/templates/institutions/detail.hbs -->
 {{link-to 'Back to list' 'institutions' class="btn btn-default"}}
 <div class="panel">
   <p><label>Name: </label>{{model.name}}</p>
@@ -10,14 +9,14 @@
     <label>Nodes</label>
     <p>
       <table class="table">
-	{{#each model.nodes as |node|}}
-	  <tr>
-	    {{node.title}}
-	  </tr>
-    <tr>
-	    {{node.description}}
-	  </tr>
-	{{/each}}
+        {{#each model.nodes as |node|}}
+          <tr>
+            {{node.title}}
+          </tr>
+          <tr>
+            {{node.description}}
+          </tr>
+        {{/each}}
       </table>
     </p>
   </p>

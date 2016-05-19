@@ -1,6 +1,12 @@
 <!-- app/templates/nodes/index.hbs -->
 <h2 class="ui header">My Projects</h2>
-<button {{action "createNew"}} class="ui primary button">Create Record</button>
+<div>
+  <label>Title:</label>
+  {{input type="text" value=title placeholder="Project Title" required=true}}
+  <label>Description (optional):</label>
+  {{input type="text" value=description placeholder="Project Description"}}
+  <p><button {{action "createNode" title description}}>Create Project</button></p>
+</div>
 
 {{#each model as |node|}}
     <div class="ui segments">
