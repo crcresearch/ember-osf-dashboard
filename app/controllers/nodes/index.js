@@ -9,14 +9,24 @@ export default Ember.Controller.extend({
                 category: 'project',
                 description: description || null
             });
+            var post = this.get('model');
+            var self = this;
 
             // TODO: Fix this
             this.set('responseMessage', `Your project was created successfully!`);
-            node.save();
+            node.save().then(function() {
+                console.log(title + ' ' + description);
+                self.set('title', '');
+                self.set('description', '');
+                post.reload();
+            });
+            console.log(self);
+            console.log(title + ' ' + description);
+
         },
         closeMessage: function() {
-            console.log('Close!')
-            $('.message.create-project').transition('fade');
+            console.log('Close!');
+            this.set('responseMessage', '');
         }
     }
 });
