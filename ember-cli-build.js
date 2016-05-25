@@ -2,10 +2,37 @@
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
     var app = new EmberApp(defaults, {
-        // Add options here
+        lessOptions: {
+            paths: [
+                'bower_components/semantic-ui'
+            ]
+        },
+        outputPaths: {
+            app: {
+                css: {
+                    app: "assets/css/ember-osf-dashboard.css"
+                },
+                js: "assets/js/ember-osf-dashboard.js"
+            },
+            vendor: {
+                css: "assets/css/vendor.css",
+                js: "assets/js/vendor.js"
+            }
+        },
+        SemanticUI: {
+            css: false,
+            javascript: true,
+            fonts: true,
+            cssPath: "assets/css"
+        },
     });
+
+    /*app.import({
+        development: 'bower_components/semantic-ui/dist/semantic.css',
+        production: 'bower_components/semantic-ui/dist/semantic.min.css'
+    });*/
 
     /*app.import('bower_components/bootstrap/dist/css/bootstrap.min.css');
     app.import('bower_components/bootstrap/dist/css/bootstrap-theme.min.css');

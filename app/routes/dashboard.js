@@ -4,8 +4,17 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
     store: Ember.inject.service(),
     session: Ember.inject.service(),
+    // model() {
+    //     const user = this.modelFor('application');
+    //     return user.get('nodes');
+    // }
     model() {
-        const user = this.modelFor('application');
-        return user.get('nodes');
+        let user = this.modelFor('application');
+        if (user) {
+            return user.get('nodes');  // Fetch from `/users/me/nodes/`
+        }
+        else {
+            return this.get('store').findRecord('user', 'me').then(user => user.get('nodes'));
+        }
     }
 });

@@ -1,6 +1,7 @@
 # Ember OSF Dashboard
 
-This project is for creating a Ember Dashboard on top of [OSF](http://osf.io).  Semantic-UI has been added to the dependencies and installs with bower.  
+This project is for creating a Ember Dashboard on top of [OSF](http://osf.io).  Semantic-UI has been added to the
+dependencies and installs with bower.  
 
 ## Prerequisites
 
@@ -15,21 +16,19 @@ You will need the following things properly installed on your computer.
 
 ## Installation and Configuration
 
-*   `git clone <repository-url>` this repository
+*   `git clone https://github.com/crcresearch/ember-osf-dashboard.git develop`
 *   `git clone https://github.com/centerforopenscience/ember-osf.git`
 *   `cd` into the new app directory
 *   `npm install`
 *   `bower install`
-*   `cd` into ember-osf directory
-*   `npm install`
-*   `bower install`
-*   Comment out all instances of "Bootstrap" in the ember-cli-build.js file that is in ember-osf.  Remove the dependency of "Bootstrap" in the bower.json file in ember-osf.
-*   Commit your changes to the ember-osf app.  Now when you pull changes down to ember-osf, your changes to these two files will merge.
-*   Add your token and client ID to the .env-stage file.
+*   Read instruction on the ember-osf repository for installation and configuration.
+*   `ember install ../ember-osf`
+*   `npm link ../ember-osf`
+*   Open the config/local.yml file, uncomment the stage section and add your token and client ID.
 
 ## Running / Development
 
-*   `ember server`
+*   `BACKEND=stage ember server`
 *   Visit your app at [http://localhost:4200](http://localhost:4200).
 
 ### Code Generators

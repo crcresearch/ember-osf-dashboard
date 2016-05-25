@@ -1,11 +1,11 @@
 <!-- app/templates/navbar.hbs -->
-
+<!-- Desktop Menu -->
+<div class="ui container desktop-menu">
     <div class="ui secondary menu">
-        <div class="ui container">
         <!-- Header -->
         <div class="header item header-fit">
             {{#link-to 'index' class="header-link"}}
-                <img src="assets/images/pentagon_icon.png" alt="Ember OSF Dashboard (Beta)" title="Ember OSF Dashboard" class="img-head" width="48px"/>
+                <img src="assets/images/osf_circle_logo.png" alt="Ember OSF Dashboard (Beta)" title="Ember OSF Dashboard" class="img-head"/>
                 <span>Ember OSF Dashboard (Beta)</span>
             {{/link-to}}
         </div>
@@ -15,25 +15,57 @@
             Dashboard
         {{/link-to}}
         {{#link-to 'nodes' class="item"}}
-            Nodes
+            Projects
         {{/link-to}}
 
-        <!-- Search -->
         <div class="right menu">
+            <!-- Search -->
             <div class="item">
                 {{#ui-search url="/search"}}
                     <div class="icon input">
                         <input type="text" class="prompt" placeholder="Search..." />
-                        <i class="search link icon"></i>
+                        <i class="ui search icon"></i>
                     </div>
                     <div class="results"></div>
                 {{/ui-search}}
             </div>
 
-        <!-- Logout -->
+            <!-- Logout -->
             <a class="item">
                 Logout
             </a>
         </div>
+    </div>
+</div>
+
+<!-- Mobile Menu -->
+<div class="ui container mobile-menu">
+    <div class="ui secondary menu">
+        {{#ui-accordion class="ui fluid"}}
+            <!-- Header -->
+            <div class="title header">
+                <div class="header item header-fit">
+                    <img src="assets/images/osf_circle_logo.png" alt="Ember OSF Dashboard (Beta)" title="Ember OSF Dashboard" class="img-head"/>
+                    <span>Ember OSF Dashboard (Beta)</span>
+                    <i class="dropdown icon"></i>
+                </div>
+            </div>
+            <div class="content">
+                {{#link-to 'index' class="item"}}
+                    Home
+                {{/link-to}}
+                {{#link-to 'dashboard' class="item"}}
+                    Dashboard
+                {{/link-to}}
+                {{#link-to 'nodes' class="item"}}
+                    Projects
+                {{/link-to}}
+                <!-- Logout -->
+                <a class="item">
+                    Logout
+                </a>
+                <hr>
+            </div>
+        {{/ui-accordion}}
     </div>
 </div>

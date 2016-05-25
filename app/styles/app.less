@@ -1,1 +1,73 @@
-import "src/semantic";
+/** app/styles/app.less **/
+@import "src/semantic";
+
+h1, h2, h3, h4, h5 {
+  text-decoration: none;
+}
+
+.header-fit {
+  margin: 5px 0 3px 0 !important;
+  padding-left: 0 !important;
+}
+
+.img-head {
+  width: 38px !important;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+}
+
+.img-head + span {
+  margin-left: 10px;
+}
+
+.header-link {
+  color: black;
+}
+
+.header-link:hover,
+.header-link:focus,
+.header-link:visited {
+  color: black;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.input-status {
+  color: white !important;
+  padding: 10px;
+  display: inline-block;
+}
+
+.input-status.ready {
+  background-color: #1CBB2C;
+}
+
+.input-status.not-ready {
+  background-color: #BB1C1C;
+}
+
+.title.header {
+  padding: 0 !important;
+}
+
+@media screen {
+  .screenClass:extend(.ui.container.desktop-menu) {}
+    @media (max-width: 991px) {
+      .ui.container.desktop-menu {
+        display:none !important;
+      }
+
+      .ui.container.mobile-menu {
+        display:block !important;
+      }
+    }
+  .screenClass:extend(.ui.container.mobile-menu) {}
+    @media (min-width: 992px) {
+      .ui.container.mobile-menu {
+        display:none !important;
+      }
+    }
+}

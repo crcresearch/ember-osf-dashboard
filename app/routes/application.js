@@ -8,5 +8,12 @@ export default Ember.Route.extend({
             return this.get('store').findRecord('user', 'me');
         }
         return null;
+    },
+    actions: {
+        menuSidebarTransition() {
+            $('.left.mobile-menu.sidebar')
+            .sidebar('setting', 'transition', 'overlay')
+            .sidebar('attach events', '.item.menu-toggle');
+        }
     }
 });
