@@ -64,7 +64,7 @@
     <h2>Edit This Node</h2>
     Title: {{input value=editedTitle}}
     <button {{action "editExisting" editedTitle}} class="">Edit Record</button>
-    
+
     <!-- Added 5/19/16 -->
     <table class="table">
     <tr>
@@ -77,7 +77,7 @@
         <td>{{contrib.bibliographic}}</td>
       </tr>
     {{/each}}
-  </table>  
+  </table>
   <label>Affiliated Institutions</label>
   <p>
     <table class="table">
@@ -90,8 +90,8 @@
   </p>
   <h2>Files</h2>
   {{#each model.files as |provider|}}
-    {{files-tree model=provider}}
+    {{file-tree model=provider}}
   {{/each}}
-  <hr>    
+  <hr>
   {{log-detail node-logs=model.logs}}
 </div>

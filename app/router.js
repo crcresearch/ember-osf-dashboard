@@ -24,7 +24,6 @@ Router.map(function() {
             });
         });
     });
-    this.route('dashboard');
     this.route('login');
     this.route('signup');
     this.route('institutions', function() {
