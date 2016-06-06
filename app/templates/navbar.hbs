@@ -10,12 +10,22 @@
             {{/link-to}}
         </div>
 
-        <div class="ui right inverted menu">
-            {{link-to 'My Projects' 'nodes' class="item"}}
-            {{link-to 'My Registrations' 'registrations' class="item"}}
-            {{link-to 'All Institutions' 'institutions' class="item"}}
-            {{link-to 'Users' 'users' class="item"}}
-            {{link-to 'Collections' 'collections' class="item"}}
+        <div class="ui secondary right menu">
+            <!-- Logout -->
+            <div class="item logout-button">
+                <div class="ui red button">Logout</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui inverted menu">
+        {{link-to 'My Projects' 'nodes' class="item"}}
+        {{link-to 'My Registrations' 'registrations' class="item"}}
+        {{link-to 'All Institutions' 'institutions' class="item"}}
+        {{link-to 'Users' 'users' class="item"}}
+        {{link-to 'Collections' 'collections' class="item"}}
+
+        <div class="ui inverted right menu">
             <!-- Search -->
             <div class="item">
                 {{#ui-search url="/search"}}
@@ -26,18 +36,12 @@
                     <div class="results"></div>
                 {{/ui-search}}
             </div>
-
-            <!-- Logout -->
-            <a class="item">
-                <div class="ui blue button">Logout</div>
-            </a>
         </div>
     </div>
-
 </div>
 
 <!-- Mobile Menu -->
-<div class="ui container mobile-menu">
+<div class="ui segment mobile-menu">
     <div class="ui secondary menu">
         {{#ui-accordion class="ui fluid"}}
             <!-- Header -->

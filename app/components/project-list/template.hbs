@@ -1,7 +1,24 @@
-<!-- app/templates/widgets/project_list.hbs -->
+<!-- app/templates/components/project-list.hbs -->
 
 {{!-- Project List Widget --}}
-<div class="ui three column stackable grid">
+<div class="ui segments">
+    <div class="ui small header segment">
+        Projects
+    </div>
+    <div class="ui segment">
+        <div class="ui divided items">
+            {{#each projects as |project|}}
+                {{#link-to 'nodes.detail' project.id class="item"}}
+                    <i class="book icon"></i>
+                    {{project.title}}
+                {{/link-to}}
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+
+{{!-- <div class="ui three column stackable grid">
     {{#each model as |node|}}
         <div class="ui column">
             <div class="ui segments">
@@ -25,7 +42,7 @@
             </div>
         </div>
     {{/each}}
-</div>
+</div> --}}
 
 {{!-- Project List Widget Modal --}}
 {{!-- {{#ui-modal name="delete-project" class="delete-project large" onApprove=(action 'confirmDelete') onDeny=(action 'cancelDelete')}}
@@ -44,12 +61,3 @@
         </button>
     </div>
 {{/ui-modal}} --}}
-<div>
-    <p>
-        hello
-        {{model}}
-        {{#each model as |node|}}
-            {{node}}
-        {{/each}}
-    </p>
-</div>

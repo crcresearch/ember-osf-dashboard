@@ -1,13 +1,14 @@
 <!-- app/templates/index.hbs -->
 
-<div class="ui buttons">
-</div>
+<h1 class="ui header">
+    Welcome {{user.id}}
+</h1>
 <!-- Total Projects -->
 <div class="ui segment">
     <p><label class="bold">Total Projects:</label> {{model.length}}</p>
 </div>
 
-{{outlet 'project-list'}}
+{{project-list projects=model}}
 
 <!-- Execution Dashboard -->
 <div class="ui segment">

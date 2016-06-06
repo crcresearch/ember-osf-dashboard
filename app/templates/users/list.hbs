@@ -1,12 +1,12 @@
 <div class="ui large header"> Users </div>
 
 <p>
-    {{pagination-control-ui
-    currentPage=page
-    pageCount=totalPages
-    next=(action 'next')
-    previous=(action 'previous')
-    goToPage=(action 'goToPage')
+    {{pagination-control
+        currentPage=page
+        pageCount=totalPages
+        next=(action 'next')
+        previous=(action 'previous')
+        goToPage=(action 'goToPage')
     }}
 </p>
 

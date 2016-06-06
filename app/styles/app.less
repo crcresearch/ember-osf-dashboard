@@ -53,20 +53,43 @@ h1, h2, h3, h4, h5 {
   padding: 0 !important;
 }
 
+.inverted.menu .item {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.secondary.menu {
+  margin-bottom: 0;
+}
+
+.inverted.menu {
+  margin-top: 0;
+}
+
+.item.logout-button:hover,
+.item.logout-button:focus,
+.item.logout-button:visited, {
+  background-color: none;
+}
+
+.ui.raised.segment.desktop-menu {
+  padding-top: 0;
+}
+
 @media screen {
-  .screenClass:extend(.ui.container.desktop-menu) {}
+  .screenClass:extend(.desktop-menu) {}
     @media (max-width: 991px) {
-      .ui.container.desktop-menu {
+      .desktop-menu {
         display:none !important;
       }
 
-      .ui.container.mobile-menu {
+      .mobile-menu {
         display:block !important;
       }
     }
-  .screenClass:extend(.ui.container.mobile-menu) {}
+  .screenClass:extend(.mobile-menu) {}
     @media (min-width: 992px) {
-      .ui.container.mobile-menu {
+      .mobile-menu {
         display:none !important;
       }
     }
