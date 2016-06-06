@@ -1,25 +1,25 @@
 <!-- app/templates/navbar.hbs -->
 <!-- Desktop Menu -->
-<div class="ui container desktop-menu">
+<div class="ui raised segment desktop-menu">
     <div class="ui secondary menu">
         <!-- Header -->
         <div class="header item header-fit">
             {{#link-to 'index' class="header-link"}}
                 <img src="assets/images/osf_circle_logo.png" alt="Ember OSF Dashboard (Beta)" title="Ember OSF Dashboard" class="img-head"/>
-                <span>Ember OSF Dashboard (Beta)</span>
+                <span>Notre Dame OSF Dashboard</span>
             {{/link-to}}
         </div>
 
-        <!-- Start Menu -->
-        {{#link-to 'nodes' class="item"}}
-            Projects
-        {{/link-to}}
-
-        <div class="right menu">
+        <div class="ui right inverted menu">
+            {{link-to 'My Projects' 'nodes' class="item"}}
+            {{link-to 'My Registrations' 'registrations' class="item"}}
+            {{link-to 'All Institutions' 'institutions' class="item"}}
+            {{link-to 'Users' 'users' class="item"}}
+            {{link-to 'Collections' 'collections' class="item"}}
             <!-- Search -->
             <div class="item">
                 {{#ui-search url="/search"}}
-                    <div class="icon input">
+                    <div class="ui icon input">
                         <input type="text" class="prompt" placeholder="Search..." />
                         <i class="ui search icon"></i>
                     </div>
@@ -29,10 +29,11 @@
 
             <!-- Logout -->
             <a class="item">
-                Logout
+                <div class="ui blue button">Logout</div>
             </a>
         </div>
     </div>
+
 </div>
 
 <!-- Mobile Menu -->

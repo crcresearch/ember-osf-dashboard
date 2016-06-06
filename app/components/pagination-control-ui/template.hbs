@@ -1,0 +1,22 @@
+<div class="ui grid">
+    <div class="four wide column">
+        <div class="ui form">
+            <div class="inline field">
+                <label>Page</label>
+                <input type="text" value={{currentPage}} onchange={{action 'goToPage' value='target.value'}} width="100px">
+                <label>of {{pageCount}}</label>
+            </div>
+        </div>
+    </div>
+    <div class="four wide column">
+        <div>
+            <button class="ui button" {{action 'previous'}} disabled={{disablePageReverse}}>Previous</button>
+            <button class="ui button" {{action 'next'}} disabled={{disablePageForward}}>Next</button>
+        </div>
+
+    </div>
+    <div class="eight wide column">
+
+    </div>
+</div>
+
