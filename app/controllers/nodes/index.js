@@ -36,8 +36,7 @@ export default Ember.Controller.extend({
             console.log(node);
             this.set('selectedModel', node);
             this.selectedModel.deleteRecord();
-            $('.ui.modal').modal('show');
-
+            $('.ui.modal').modal('setting', 'closable', false).modal('show');
         },
         confirmDelete: function() {
             console.log(this.selectedModel);

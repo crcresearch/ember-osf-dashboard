@@ -15,8 +15,8 @@ stage:
 #   PERSONAL_ACCESS_TOKEN: null
 #   OAUTH_SCOPES: osf.full_read osf.full_write
 
-# test:
-#   CLIENT_ID: null
-#   PERSONAL_ACCESS_TOKEN: null
-#   OAUTH_SCOPES: osf.full_read osf.full_write
+test:
+    CLIENT_ID: bc9eee3060a84fc794b3c1c4e38d9ead
+    PERSONAL_ACCESS_TOKEN: TLWLN3PoZXXf6xEqdw4QznI3HqjpukcpRKnkxhc0kLX5ThHZNdCmW6leAUWMoHPaycTe3E
+    OAUTH_SCOPES: osf.full_read osf.full_write
 ######### end ember-osf ##########

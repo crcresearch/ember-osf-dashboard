@@ -12,6 +12,8 @@
     <p><label class="bold">Total Projects:</label> {{model.length}}</p>
 </div>
 
+{{outlet 'project-list'}}
+
 <!-- Execution Dashboard -->
 <div class="ui segment">
     <h4 class="ui header">Execution Dashboard</h4>
@@ -78,7 +80,6 @@
         </div>
     </div>
 </div>
-
 
 {{!-- {{#each model as |node|}}
     <hr />
