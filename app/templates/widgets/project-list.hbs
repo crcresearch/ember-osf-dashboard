@@ -1,0 +1,55 @@
+<!-- app/templates/widgets/project_list.hbs -->
+
+{{!-- Project List Widget --}}
+<div class="ui three column stackable grid">
+    {{#each model as |node|}}
+        <div class="ui column">
+            <div class="ui segments">
+                <div class="ui segment">
+                    <label class="bold">Title: </label>{{node.title}}<br />
+                    <label class="bold">Category: </label>{{node.category}}<br />
+                    <label class="bold">Date Created: </label>{{moment-format node.dateCreated}}<br />
+                    <label class="bold">Date Modified: </label>{{moment-format node.dateModified}}
+                </div>
+                <div class="ui secondary segment">
+                    <div class="ui buttons">
+                        <a href="{{node.links.html}}" target="_blank" class="ui green button">
+                            View on OSF
+                        </a>
+                        {{link-to 'Detail' 'nodes.detail' node.id class="ui primary button"}}
+                        <button class="ui red button" {{action 'requestDelete' node delete-project}}>
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>
+
+{{!-- Project List Widget Modal --}}
+{{!-- {{#ui-modal name="delete-project" class="delete-project large" onApprove=(action 'confirmDelete') onDeny=(action 'cancelDelete')}}
+    <div class="header">
+        Delete Project?
+    </div>
+    <div class="content">
+        <p>Are you sure you want to delete this project: {{node.title}}?</p>
+    </div>
+    <div class="actions">
+        <button class="ui black cancel button">
+            <i class="close icon"></i>Cancel
+        </button>
+        <button class="ui red approve right labeled icon button">
+            <i class="checkmark icon"></i>Delete
+        </button>
+    </div>
+{{/ui-modal}} --}}
+<div>
+    <p>
+        hello
+        {{model}}
+        {{#each model as |node|}}
+            {{node}}
+        {{/each}}
+    </p>
+</div>
