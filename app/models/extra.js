@@ -1,3 +1,4 @@
+// app/models/extra.js
 import DS from 'ember-data';
 import OsfModel from 'ember-osf/models/node';
 

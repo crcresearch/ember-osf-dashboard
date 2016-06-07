@@ -1,3 +1,4 @@
+// app/mirage/config.js
 export default function() {
 
   // These comments are here to help you get started. Feel free to delete them.

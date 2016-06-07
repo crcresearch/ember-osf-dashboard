@@ -1,5 +1,5 @@
+// config/environment.js
 /* jshint node: true */
-
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'ember-osf-dashboard',
@@ -18,7 +18,7 @@ module.exports = function(environment) {
       // when it is created
     },
     i18n: {
-      defaultLocale: 'en-US'  
+      defaultLocale: 'en-US'
     },
     'ember-simple-auth': {
         authenticationRoute: 'login',

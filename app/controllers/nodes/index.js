@@ -1,3 +1,4 @@
+// app/controller/nodes/detail/index.js
 import Ember from 'ember';
 
 export default Ember.Controller.extend({

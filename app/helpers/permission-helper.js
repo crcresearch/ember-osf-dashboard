@@ -1,3 +1,4 @@
+// app/helpers/permission-helper.js
 import Ember from 'ember';
 
 export function permissionHelper(params) {

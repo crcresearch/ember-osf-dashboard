@@ -1,3 +1,4 @@
+// app/helpers/bibliographic-helper.js
 import Ember from 'ember';
 
 export function bibliographicHelper(params) {

@@ -1,3 +1,4 @@
+// app/routes/collections/detail.js
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 

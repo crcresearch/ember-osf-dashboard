@@ -1,3 +1,4 @@
+// app/mirage/scenarios/default.js
 export default function(/* server */) {
 
   // Seed your development database using your factories. This

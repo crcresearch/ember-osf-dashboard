@@ -1,3 +1,4 @@
+// app/controller/users/list.js
 import Ember from 'ember';
 import PaginatedControllerMixin from  'ember-osf/mixins/paginated-controller';
 
