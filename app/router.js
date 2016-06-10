@@ -11,6 +11,9 @@ Router.map(function() {
         path: '/'
     });
     this.route('nodes', function() {
+        this.route('list', {
+            path: '/'
+        });
         this.route('detail', {
             path: '/:node_id'
         }, function() {

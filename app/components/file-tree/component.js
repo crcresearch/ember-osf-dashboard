@@ -1,4 +1,4 @@
-// app/componets/file-tree/component.js
+// app/components/file-tree/component.js
 import Ember from 'ember';
 import layout from './template';
 

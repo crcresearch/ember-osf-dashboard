@@ -1,5 +1,5 @@
-// app/componets/pagination-control/component.js
-import Ember from 'ember';
+// app/components/pagination-control/component.js
+// import Ember from 'ember';
 import PaginationControl from 'ember-osf/components/pagination-control/component';
 import layout from './template';
 

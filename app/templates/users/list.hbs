@@ -1,17 +1,6 @@
 <!-- app/templates/users/list.hbs -->
-<div class="ui large header"> Users </div>
-
-<p>
-    {{pagination-control
-        currentPage=page
-        pageCount=totalPages
-        next=(action 'next')
-        previous=(action 'previous')
-        goToPage=(action 'goToPage')
-    }}
-</p>
-
-<hr>
+<div class="ui large header">Users</div>
+{{!-- User List --}}
 <div class="ui cards">
 {{#each model as |user|}}
     <div class="ui card">
@@ -36,4 +25,13 @@
         </div>
     </div>
 {{/each}}
+</div>
+<div class="ui segment">
+    {{pagination-control-ui
+        currentPage=page
+        pageCount=totalPages
+        next=(action 'next')
+        previous=(action 'previous')
+        goToPage=(action 'goToPage')
+    }}
 </div>

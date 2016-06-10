@@ -1,0 +1,54 @@
+<!-- app/components/project-create.hbs -->
+{{!-- Create Project Button Widget --}}
+<button class="ui green button" {{action 'requestCreate' project create-project}}>
+    Create Project
+</button>
+
+{{!-- Create Project Modal Widget --}}
+{{#ui-modal name="create-project" class="create-project" onApprove=(action 'confirmCreate' title description) onDeny=(action 'cancelCreate')}}
+    <div class="header">
+        Create Project?
+    </div>
+    <div class="ui segments">
+        <div class="ui segment">
+            <div class="ui two column stackable grid">
+                <div class="column">
+                    <label class="bold">Title:</label>
+                    <div class="ui fluid input">
+                        {{input type="text" value=title placeholder="Project Title" required=true}}
+                    </div>
+                </div>
+                <div class="column">
+                    <label class="bold">Description (optional):</label>
+                    <div class="ui fluid input">
+                        {{input type="text" value=description placeholder="Project Description"}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui segment">
+            <div class="actions">
+                <button class="ui black cancel button">
+                    Cancel
+                </button>
+                <button class="ui green approve right labeled icon button">
+                    Create
+                    <i class="checkmark icon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Response Messages --}}
+    {{#if responseSuccess}}
+        <div class="ui bottom attached success message create-project">
+            <i class="close icon" {{action 'closeMessage'}}></i>
+            {{responseSuccess}}
+        </div>
+    {{else if responseError}}
+        <div class="ui bottom attached error message create-project">
+            <i class="close icon" {{action 'closeMessage'}}></i>
+            {{responseError}}
+        </div>
+    {{/if}}
+{{/ui-modal}}

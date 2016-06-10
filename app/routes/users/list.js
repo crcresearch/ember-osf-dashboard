@@ -7,6 +7,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, PaginatedRouteMixin, 
     store: Ember.inject.service(),
     session: Ember.inject.service(),
     model(routeParams) {
+        console.log(this.queryForPage('user', routeParams));
+        console.log(routeParams);
         return this.queryForPage('user', routeParams);
     }
 });
