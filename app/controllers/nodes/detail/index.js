@@ -1,7 +1,8 @@
 // app/controller/nodes/detail/index.js
 import Ember from 'ember';
+import TaggableMixin from 'ember-osf/mixins/taggable-mixin';
 
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(TaggableMixin, {
     editedPermissions: {},
     editedBibliographic: {},
     responseSuccess: '',

@@ -1,7 +1,8 @@
 // app/routes/nodes/detail.js
 import Ember from 'ember';
-
 // TODO: refactor permissions strings when https://github.com/CenterForOpenScience/ember-osf/pull/23/files#diff-7fd0bf247bef3c257e0fcfd7e544a338R5 is merged
+import permissions from 'ember-osf/const/permissions';
+
 export default Ember.Route.extend({
     model(params) {
         return this.store.findRecord('node', params.node_id);
@@ -10,7 +11,7 @@ export default Ember.Route.extend({
     setupController(controller, model) {
         controller.set('editedTitle', model.get('title'));
         controller.set('editedTitle', model.get('category'));
-        controller.set('editedTitle', model.get('dscription'));
+        controller.set('editedTitle', model.get('description'));
         this._super(...arguments);
     },
 
@@ -18,11 +19,19 @@ export default Ember.Route.extend({
         editExisting(title, description, category, isPublic) {
             // TODO: Should test PUT or PATCH
             var node = this.modelFor(this.routeName);
-            if (node.get('currentUserPermissions').indexOf('write') !== -1) {
-                if (title) {node.set('title', title);}
-                if (category) {node.set('category', category);}
-                if (description) {node.set('description', description);}
-                if (isPublic !== null) {node.set('public', isPublic);}
+            if (node.get('currentUserPermissions').indexOf(permissions.WRITE) !== -1) {
+                if (title) {
+                    node.set('title', title);
+                }
+                if (category) {
+                    node.set('category', category);
+                }
+                if (description) {
+                    node.set('description', description);
+                }
+                if (isPublic !== null) {
+                    node.set('public', isPublic);
+                }
                 node.save();
             } else {
                 console.log('You do not have permissions to edit this node');
@@ -43,14 +52,15 @@ export default Ember.Route.extend({
         addContributor(contribId, permission, bibliographic) {
             var node = this.modelFor(this.routeName);
             if (contribId) {
-                if (node.get('currentUserPermissions').indexOf('admin') !== -1) {
+                if (node.get('currentUserPermissions').indexOf(permissions.ADMIN) !== -1) {
                     var contributor = this.store.createRecord('contributor', {
-                        id: contribId,
+                        userId: contribId,
                         permission: permission,
                         bibliographic: bibliographic,
                         nodeId: node.id
                     });
-                    contributor.save();
+                    node.get('contributors').pushObject(contributor);
+                    node.save();
                     console.log('Contributor added.');
                 } else {
                     console.log('You do not have permissions to add contributors');
@@ -71,14 +81,13 @@ export default Ember.Route.extend({
             for (var c in editedBibliographic) {
                 contribMap[c].bibliographic = editedBibliographic[c];
             }
-
-            if (node.get('currentUserPermissions').indexOf('admin') !== -1) {
+            if (node.get('currentUserPermissions').indexOf(permissions.ADMIN) !== -1) {
                 this.attemptContributorsUpdate(contribMap, node, editedPermissions, editedBibliographic);
             } else {
                 // Non-admins can only attempt to remove themselves as contributors
                 if (contrib.id === user.id) {
                     this.attemptContributorsUpdate(contribMap, node, editedPermissions,
-                      editedBibliographic);
+                        editedBibliographic);
                 } else {
                     console.log('Non-admins cannot update other contributors.');
                 }
@@ -87,12 +96,14 @@ export default Ember.Route.extend({
         },
         deleteContributor(contrib) {
             var node = this.modelFor(this.routeName);
-            contrib.setProperties({ nodeId: node.id });
+            contrib.setProperties({
+                nodeId: node.id
+            });
             let user = this.modelFor('application');
 
             var contribMap = this.generateContributorMap(node.get('contributors'));
 
-            if (node.get('currentUserPermissions').indexOf('admin') !== -1) {
+            if (node.get('currentUserPermissions').indexOf(permissions.ADMIN) !== -1) {
                 this.attemptContributorRemoval(contrib, contribMap);
             } else {
                 // Non-admins can only attempt to remove themselves as contributors
@@ -103,18 +114,36 @@ export default Ember.Route.extend({
                 }
             }
         },
-        addChildren(title, description, category) {
+        addChild(title, description, category) {
             var node = this.modelFor(this.routeName);
-            if (node.get('currentUserPermissions').indexOf('write') !== -1) {
+            if (node.get('currentUserPermissions').indexOf(permissions.WRITE) !== -1) {
                 var child = this.store.createRecord('node', {
                     title: title,
                     category: category || 'project',
                     description: description || null
                 });
-                child.one('didCreate', this, function() {
+                node.get('children').pushObject(child);
+                node.save();
+                node.one('didUpdate', this, function() {
                     this.transitionTo('nodes.detail.children');
                 });
-                node.get('children').pushObject(child);
+            } else {
+                console.log('You do not have permissions to create this component');
+            }
+        },
+        addChildren(title1, title2) {
+            var node = this.modelFor(this.routeName);
+            if (node.get('currentUserPermissions').indexOf(permissions.WRITE) !== -1) {
+                var child1 = this.store.createRecord('node', {
+                    title: title1,
+                    category: 'project'
+                });
+                var child2 = this.store.createRecord('node', {
+                    title: title2,
+                    category: 'project'
+                });
+                node.get('children').pushObject(child1);
+                node.get('children').pushObject(child2);
                 node.save();
             } else {
                 console.log('You do not have permissions to create this component');
@@ -122,20 +151,44 @@ export default Ember.Route.extend({
         },
         deleteNode() {
             var node = this.modelFor(this.routeName);
-            if (node.get('currentUserPermissions').indexOf('write') !== -1) {
-                node.one('didDelete', this, function () {
+            if (node.get('currentUserPermissions').indexOf(permissions.WRITE) !== -1) {
+                node.one('didDelete', this, function() {
                     this.transitionTo('nodes.index');
                 });
                 node.destroyRecord();
             } else {
                 console.log('You do not have permissions to delete this node');
             }
+        },
+        addNodeLink(targetNodeId) {
+            var node = this.modelFor(this.routeName);
+            if (node.get('currentUserPermissions').indexOf(permissions.WRITE) !== -1) {
+                var nodeLink = this.store.createRecord('node-link', {
+                    target: targetNodeId
+                });
+                node.get('nodeLinks').pushObject(nodeLink);
+                node.save();
+            } else {
+                console.log('You do not have permissions to create a node link');
+            }
+        },
+        removeNodeLink(targetNode) {
+            var node = this.modelFor(this.routeName);
+            if (node.get('currentUserPermissions').indexOf(permissions.WRITE) !== -1) {
+                targetNode.destroyRecord();
+                console.log('Node link removed.');
+            } else {
+                console.log('You do not have permissions to delete this node link.');
+            }
         }
     },
     generateContributorMap(contributors) {
         // Maps all node contributors to format {contribID: {permission: "read|write|admin", bibliographic: "true|false"}}
         var contribMap = contributors.content.currentState.reduce(function(newMap, contrib) {
-            newMap[contrib.id] = { permission: contrib._data.permission, bibliographic: contrib._data.bibliographic };
+            newMap[contrib.id] = {
+                permission: contrib._data.permission,
+                bibliographic: contrib._data.bibliographic
+            };
             return newMap;
         }, {});
         return contribMap;
@@ -165,13 +218,14 @@ export default Ember.Route.extend({
 
     attemptContributorsUpdate(contribMap, node, editedPermissions, editedBibliographic) {
         if (this.canModifyContributor(null, contribMap)) {
+            var promises = [];
             for (var contrib in editedPermissions) {
-                this.modifyPermissions(contrib, node, editedPermissions);
+                promises.push(this.modifyPermissions(contrib, node, editedPermissions));
             }
             for (var c in editedBibliographic) {
-                this.modifyBibliographic(c, node, editedBibliographic);
+                promises.push(this.modifyBibliographic(c, node, editedBibliographic));
             }
-            node.save();
+            Ember.RSVP.Promise.all(promises).then(() => node.save());
             console.log('Contributor(s) updated.');
         } else {
             console.log('Cannot update contributor(s)');
@@ -179,7 +233,7 @@ export default Ember.Route.extend({
     },
 
     modifyPermissions(contrib, node, editedPermissions) {
-        this.store.findRecord('contributor', contrib).then(function(contributor) {
+        return this.store.findRecord('contributor', contrib).then(function(contributor) {
             contributor.set('nodeId', node.id);
             contributor.set('permission', editedPermissions[contrib]);
             contributor.save();
@@ -187,7 +241,7 @@ export default Ember.Route.extend({
     },
 
     modifyBibliographic(contrib, node, editedBibliographic) {
-        this.store.findRecord('contributor', contrib).then(function(contributor) {
+        return this.store.findRecord('contributor', contrib).then(function(contributor) {
             contributor.set('nodeId', node.id);
             contributor.set('bibliographic', editedBibliographic[contrib]);
             contributor.save();
