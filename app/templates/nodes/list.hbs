@@ -1,5 +1,13 @@
 <!-- app/templates/nodes/index.hbs -->
-<h2 class="ui header">My Projects</h2>
+<div class="ui stackable two column grid">
+    <div class="column">
+        <h2 class="ui header">My Projects </h2>
+    </div>
+    <div class="column">
+        {{project-create model=model}}
+    </div>
+</div>
+
 {{!-- Project List --}}
 <div class="ui cards">
     {{#each model as |node|}}

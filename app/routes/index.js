@@ -14,7 +14,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, PaginatedRouteMixin, 
             }
         };
 
-        if (user) {
+        if(user) {
             userParams['filter']['contributors'] = user.id;
             return this.queryForPage('node', routeParams, userParams);
             // return user.get('nodes'); // Fetch from `/users/me/nodes/`
@@ -28,11 +28,22 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, PaginatedRouteMixin, 
     setupController: function (controller, model) {
         this._super(controller, model);
         let user = this.modelFor('application');
-        var current_user_name = user.get('fullName');
+        var current_user_full_name = '';
+
+        if(user) {
+            current_user_full_name = user.get('fullName');
+        } else {
+            current_user_full_name = this.get('store').queryRecord('user', {
+                filter: {
+                    id: model.query.contributors
+                }
+            }).then(user => user.get('fullName'));
+            console.log(current_user_full_name);
+        }
+
         var meta = model.get('meta');
-        console.log(meta.pagination);
-        controller.set('currentUser', current_user_name);
-        controller.set('model', model);
+        controller.set('currentUser', current_user_full_name);
         controller.set('pagination', meta.pagination);
     },
+
 });

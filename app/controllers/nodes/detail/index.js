@@ -24,33 +24,6 @@ export default Ember.Controller.extend({
             var contributorId = target.value;
             this.editedBibliographic[contributorId] = bibliographic;
         },
-        createNode: function(title, description) {
-            var node = this.store.createRecord('node', {
-                title: title,
-                category: 'project',
-                description: description || null
-            });
-
-            var post = this.get('model');
-            var self = this;
-
-            // TODO: Fix this
-
-            node.save().then(function() {
-                self.set('responseError', '');
-                self.set('responseSuccess', `Your project was created successfully!`);
-                self.set('title', '');
-                self.set('description', '');
-                post.reload();
-            }, function(error) {
-                console.log(error.message);
-                self.set('responseSuccess', '');
-                self.set('responseError', 'There was an error creating your project.');
-                self.set('title', '');
-                self.set('description', '');
-                post.reload();
-            });
-        },
         requestDelete: function(node, name) {
             console.log(node);
             this.set('selectedModel', node);
