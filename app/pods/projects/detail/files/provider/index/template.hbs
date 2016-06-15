@@ -1,0 +1,19 @@
+<!-- app/pods/projects/detail/files/provider/index/template.hbs -->
+<div class="panel">
+    <div>
+        {{link-to 'Back to providers' 'projects.detail.files'
+        model.node class='btn'}}
+    </div>
+    <h2>{{model.name}}</h2>
+    <p><label>ID: </label>{{model.id}}</p>
+    <p><label>Provider: </label>{{model.provider}}</p>
+    <p><label>Path: </label>{{model.path}}</p>
+
+    <h3>Files</h3>
+    {{file-tree root=model project=model.node}}
+
+    <hr>
+
+    <h3>Actions</h3>
+    {{file-actions file=model onChange=(action 'reloadFiles')}}
+</div>

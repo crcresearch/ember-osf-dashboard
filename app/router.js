@@ -10,8 +10,8 @@ Router.map(function() {
     this.route('index', {
         path: '/'
     });
-    this.route('nodes', function() {
-        this.route('list', {
+    this.route('projects', function() {
+        this.route('index', {
             path: '/'
         });
         this.route('detail', {
@@ -56,6 +56,7 @@ Router.map(function() {
         });
     });
     this.route('prereg');
+    this.route('widgets/project-list', {path: '/:project-list'});
 });
 
 export default Router;

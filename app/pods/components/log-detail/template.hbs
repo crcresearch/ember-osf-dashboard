@@ -1,0 +1,29 @@
+<!-- app/pods/components/log-detail/template.js -->
+<h2> Recent Activity </h2>
+
+<table class="table logs">
+    <tr>
+        <th> Action </th>
+        <th> Original Project </th>
+        <th> User </th>
+        <th> Current Project </th>
+        <th> Date </th>
+        <th> Additional Params Included </th>
+    </tr>
+    {{#each project-logs as |project-log|}}
+        <tr>
+            <td> {{project-log.action}} </td>
+            <td> <a href="{{project-log.originalNode.links.html}}"> {{project-log.originalNode.title}}: {{project-log.originalNode.id}} </a> </td>
+            <td> <a href="{{project-log.user.links.html}}">{{project-log.user.givenName}} </a> </td>
+            <td> <a href="{{project-log.node.links.html}}">{{project-log.node.title}}: {{project-log.node.id}}  </a></td>
+            <td> {{moment-format project-log.date}} </td>
+            <td>
+                {{#each-in project-log.params as |key value|}}
+                    {{key}},
+                {{/each-in}}
+                {{if project-log.linkedNode "linked_node"}}
+                {{if project-log.templateNode "template_node"}}
+            </td>
+        </tr>
+    {{/each}}
+</table>

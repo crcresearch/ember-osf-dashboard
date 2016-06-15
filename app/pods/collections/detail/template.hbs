@@ -1,0 +1,31 @@
+<!-- app/pods/collections/detail/template.hbs -->
+{{link-to 'Back to list' 'collections' class="btn btn-default"}}
+<div class="panel">
+    <h3> Collection Details </h3>
+    <p><label>Title:</label> {{model.title}}</p>
+    <p><label>Date created:</label> {{moment-format model.dateCreated}}</p>
+    <p><label>Date modified:</label> {{moment-format model.dateModified}}</p>
+    <p><label>Bookmark:</label> {{model.bookmarks}}</p>
+
+    <h3> Collection Contents </h3>
+    <table class="table">
+        <tr>
+            <th> Name </th>
+            <th> Date Modified </th>
+            <th> </th>
+        </tr>
+        {{#each model.linkedNodes as |linkedProject|}}
+            <tr>
+                <td>{{link-to linkedProject.title 'projects.detail' linkedProject.id }} </td>
+                <td>{{moment-format linkedProject.dateModified}} </td>
+                <td><button {{action "removeProjectFromCollection" linkedProject}} class="btn btn-danger">Remove project</button> </td>
+            </tr>
+        {{/each}}
+    </table>
+
+    <h3>Add project to collection</h3>
+    <label> Project id </label> {{input value=projectId}}
+    <button {{action "addProjectToCollection" projectId}} class="btn btn-primary">Add</button>
+
+
+</div>

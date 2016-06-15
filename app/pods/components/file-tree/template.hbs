@@ -1,0 +1,24 @@
+<!-- app/pods/components/file-tree/template.js -->
+<div class="file-tree">
+    {{#if onClickFile}}
+        <a {{action onClickFile root}}>{{root.name}}</a>
+    {{else}}
+        {{#if root.isProvider}}
+            {{link-to root.name 'projects.detail.files.provider' project root}}
+        {{else}}
+            {{link-to root.name 'projects.detail.files.provider.file'
+            project root.provider root}}
+        {{/if}}
+    {{/if}}
+    {{#if root.isFolder}}
+        <ul class="folder-list">
+            {{#each root.files as |file|}}
+                <li>
+                    {{file-tree root=file project=project}}
+                </li>
+            {{else}}
+                <li>(empty folder)</li>
+            {{/each}}
+        </ul>
+    {{/if}}
+</div>

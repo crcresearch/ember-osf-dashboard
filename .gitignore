@@ -15,9 +15,9 @@
 /libpeerconnection.log
 npm-debug.log
 testem.log
+/.imdone
 
 # .env
 # .env-local
 # .env-stage*
 # .env-prod
-

@@ -1,0 +1,66 @@
+<!-- app/pods/widgets/project-list/template.hbs -->
+{{!-- Project List Widget --}}
+<div class="ui segments">
+    <div class="ui segment">
+        <div class="ui two column grid fluid">
+            <div class="row">
+                <div class="left floated left aligned column">
+                    <div class="bold">
+                        Projects
+                    </div>
+                </div>
+                <div class="right floated right aligned column">
+                    <div class="content">
+                        Total Projects: {{pagination.total}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui segment">
+        <div class="ui two column grid vertically divided fluid">
+            {{#each model as |project|}}
+                <div class="row">
+
+                        <div class="left floated left aligned column">
+                            {{#link-to 'projects.detail' project.id}}
+                                <i class="book icon"></i>
+                                {{project.title}}
+                            {{/link-to}}
+                        </div>
+                        <div class="right floated right aligned column">
+                            {{moment-format project.dateModified}}
+                        </div>
+
+                </div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="ui segment">
+        {{pagination-control-ui
+            currentPage=page
+            pageCount=totalPages
+            next=(action 'next')
+            previous=(action 'previous')
+            goToPage=(action 'goToPage')
+        }}
+    </div>
+</div>
+
+{{!-- Project List Widget Modal --}}
+{{!-- {{#ui-modal name="delete-project" class="delete-project large" onApprove=(action 'confirmDelete') onDeny=(action 'cancelDelete')}}
+    <div class="header">
+        Delete Project?
+    </div>
+    <div class="content">
+        <p>Are you sure you want to delete this project: {{project.title}}?</p>
+    </div>
+    <div class="actions">
+        <button class="ui black cancel button">
+            <i class="close icon"></i>Cancel
+        </button>
+        <button class="ui red approve right labeled icon button">
+            <i class="checkmark icon"></i>Delete
+        </button>
+    </div>
+{{/ui-modal}} --}}

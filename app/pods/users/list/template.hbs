@@ -1,0 +1,37 @@
+<!-- app/pods/users/list/template.hbs -->
+<div class="ui large header">Users</div>
+{{!-- User List --}}
+<div class="ui cards">
+{{#each model as |user|}}
+    <div class="ui card">
+        <div class="content">
+            <div class="header">{{user.fullName}}</div>
+        </div>
+        <div class="content">
+            <h4 class="ui sub header">Detail</h4>
+            <div class="ui small feed">
+                <div class="event">
+                    <div class="content">
+                        <div class="summary">
+                            <p><label>Date Registered: </label> {{moment-format user.dateRegistered}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="extra content">
+            <a href="{{user.links.html}}" target="_blank" class="ui blue button"> View On OSF</a>
+            {{link-to 'Detail' 'users.detail' user.id class="ui orange button"}}
+        </div>
+    </div>
+{{/each}}
+</div>
+<div class="ui segment">
+    {{pagination-control-ui
+        currentPage=page
+        pageCount=totalPages
+        next=(action 'next')
+        previous=(action 'previous')
+        goToPage=(action 'goToPage')
+    }}
+</div>
