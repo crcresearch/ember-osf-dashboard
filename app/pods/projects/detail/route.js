@@ -3,6 +3,8 @@ import Ember from 'ember';
 // TODO: refactor permissions strings when https://github.com/CenterForOpenScience/ember-osf/pull/23/files#diff-7fd0bf247bef3c257e0fcfd7e544a338R5 is merged
 import permissions from 'ember-osf/const/permissions';
 
+var OSF_API_URL = "https://"
+
 export default Ember.Route.extend({
     model(params) {
         return this.store.findRecord('node', params.node_id);
@@ -256,5 +258,42 @@ export default Ember.Route.extend({
         } else {
             console.log('Cannot remove contributor');
         }
+    },
+
+    addComment: function(node_id, user) {
+        var add_comment_textarea = $("#add-comment-textarea");
+        var comment_text = add_comment_textarea.val();
+
+        var url = OSF_API_URL + "/v2/nodes/" + node_id + "/comments/";
+        // var username = "admin";
+        // var password = "admin";
+        //
+        // var data = {
+        //     "image_name": "keyz182/test_container",
+        //     "image_tag": "latest",
+        //     "scripturl": script_url,
+        //     "scriptname": script_name,
+        //     "container_args": "python /mnt/" + script_name,
+        //     "dataurl": data_url,
+        //     "datapath": "/mnt/"
+        // };
+        //
+        // $.ajax(
+        // {
+        //     data: data,
+        //     type: "POST",
+        //     url: url,
+        //     headers: {"Authorization": "Basic " + btoa(username + ":" + password), "Access-Control-Allow-Origin": "*"},
+        //
+        //     success: function()
+        //     {
+        //         alert("Success");
+        //     },
+        //
+        //     error: function(XMLHttpRequest, textStatus, errorThrown)
+        //     {
+        //         alert(XMLHttpRequest.responseText);
+        //     }
+        // });
     }
 });

@@ -20,7 +20,10 @@ You will need the following things properly installed on your computer.
 *   `git clone https://github.com/centerforopenscience/ember-osf.git`
 *   `cd` into the new app directory
 *   `npm install`
+*   Use `npm install -g bower` if you haven't installed bower
 *   `bower install`
+*   Use `npm install -g ember-cli` if you haven't installed ember yet
+*   Ember recommends you also install phantomjs with 'npm install -g phantomjs`
 *   Read instruction on the ember-osf repository for installation and configuration.
 *   `ember install ../ember-osf`
 *   `npm link ../ember-osf`
