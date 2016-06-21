@@ -9,8 +9,8 @@
     <p><label>Date Modified:</label> {{moment-format model.dateModified}}</p>
     <p><label>Public </label> {{model.public}} </p>
     <p><label> Tags </label></p>
-    {{#tags-widget addATag=(action 'addATag') removeATag=(action 'removeATag') tags=model.tags}}
-    {{/tags-widget}}
+    {{!-- {{#tags-widget addATag=(action 'addATag') removeATag=(action 'removeATag') tags=model.tags}}
+    {{/tags-widget}} --}}
 
     <hr>
 
@@ -178,7 +178,68 @@
     <h3>Add link</h3>
     <label> Target project id </label> {{input value=targetProjectId}}
     <button {{action "addProjectLink" targetProjectId}} class="btn btn-primary">Add</button>
+</div>
 
+<div class="ui threaded comments">
+    <h3 class="ui dividing header">Comments</h3>
+    {{#each model.comments as |comment|}}
+        <div class="comment">
+            <!--<a class="avatar">-->
+                <!--<img src="/images/avatar/small/joe.jpg">-->
+            <!--</a>-->
+
+            <div class="content">
+                <a class="author">{{comment.user.fullName}}</a>
+
+                <div class="metadata">
+                    <div class="date">{{comment.dateCreated}}</div>
+                </div>
+
+                <div class="text">
+                    <p>{{comment.content}}</p>
+                </div>
+
+                <div class="actions">
+                    <a class="reply">Reply</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="comments">
+            {{#each comment.replies as |comment_reply|}}
+                <div class="comment">
+                    <!--<a class="avatar">-->
+                        <!--<img src="/images/avatar/small/joe.jpg">-->
+                    <!--</a>-->
+
+                    <div class="content">
+                        <a class="author">{{comment_reply.user.fullName}}</a>
+
+                        <div class="metadata">
+                            <div class="date">{{comment_reply.dateCreated}}</div>
+                        </div>
+
+                        <div class="text">
+                            <p>{{comment_reply.content}}</p>
+                        </div>
+
+                        <div class="actions">
+                            <a class="reply">Reply</a>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{/each}}
+
+    <form class="ui reply form">
+        <div class="ui field">
+            <textarea id="add-comment-textarea"></textarea>
+        </div>
+        <div class="ui primary submit labeled icon button"> {{!-- {{action 'addComment' model.id user }} > --}}
+            <i class="icon edit"></i> Add Comment
+        </div>
+    </form>
 </div>
 
 {{!-- <button class="ui red button" {{action 'requestDelete' project delete-project}}>
