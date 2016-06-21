@@ -1,7 +1,7 @@
 # Ember OSF Dashboard
 
-This project is for creating a Ember Dashboard on top of [OSF](http://osf.io).  Semantic-UI has been added to the
-dependencies and installs with bower.  
+This project is for creating a Ember Dashboard on top of [OSF](http://osf.io).  Semantic-UI
+has been added to the dependencies and installs with bower.  
 
 ## Prerequisites
 
@@ -25,6 +25,8 @@ You will need the following things properly installed on your computer.
 *   `ember install ../ember-osf`
 *   `npm link ../ember-osf`
 *   Open the config/local.yml file, uncomment the stage section and add your token and client ID.
+*   Find the `index.js` file in the _extra folder and copy and overwrite the `index.js` file in
+`node_modules/semantic-ui-ember/` directory.
 
 ## Running / Development
 
@@ -56,5 +58,6 @@ Specify what it takes to deploy your app.
 
 Development Browser Extensions:
 
-*   [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
+*   [ember inspector for
+chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
 *   [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)

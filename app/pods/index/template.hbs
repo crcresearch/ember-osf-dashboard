@@ -1,9 +1,9 @@
 <!-- app/pods/index/template.hbs -->
 <h1 class="ui header">
-    Welcome {{model}}
+    Welcome {{currentUser}}
 </h1>
 
-{{render 'project-list'}}
+{{project-list user_id=model.id}}
 
 {{!-- <!-- Execution Dashboard -->
 <div class="ui segment">

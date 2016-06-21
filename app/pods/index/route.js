@@ -1,12 +1,11 @@
 // app/pods/index/route.js
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
-import PaginatedRouteMixin from  'ember-osf/mixins/paginated-route';
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, PaginatedRouteMixin, {
+export default Ember.Route.extend(AuthenticatedRouteMixin, {
     store: Ember.inject.service(),
     session: Ember.inject.service(),
-    model(/*routeParams*/) {
+    model() {
         let user = this.modelFor('application');
         // var userParams = {
         //     filter: {
@@ -15,41 +14,24 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, PaginatedRouteMixin, 
         // };
 
         if(user) {
+            return user;
             // userParams['filter']['contributors'] = user.id;
+            // this.set('currentUser', user.get('fullName'));
             // return this.queryForPage('node', routeParams, userParams);
-            return user.get('fullName'); // Fetch from `/users/me/nodes/`
+            // return user.get('nodes'); // Fetch from `/users/me/nodes/`
         } else {
-            // user = this.get('store').findRecord('user', 'me');
+            return this.get('store').findRecord('user', 'me').then(user => user);
             // userParams['filter']['contributors'] = user.id;
+            // this.set('currentUser', user.get('fullName'));
             // return this.queryForPage('node', routeParams, userParams);
-            return this.get('store').findRecord('user', 'me').then(user => user.get('fullName'));
+            // return this.get('store').findRecord('user', 'me').then(user => user.get('nodes'));
+
         }
     },
-    renderTemplate: function(controller, model) {
-        // var projectListController = this.controllerFor('project-list');
-        this.render('widgets/project-list', {
-            outlet: 'project-list',
-            // controller: 'project-list'
-        });
+    setupController: function (controller, model) {
+        this._super(controller, model);
+        var fullName = model.get('fullName');
+        controller.set('currentUser', fullName);
+        controller.set('model', model);
     }
-    // setupController: function (controller, model) {
-    //     this._super(controller, model);
-    //     let user = this.modelFor('application');
-    //     var current_user_full_name = '';
-    //
-    //     if(user) {
-    //         current_user_full_name = user.get('fullName');
-    //     } else {
-    //         current_user_full_name = this.get('store').queryRecord('user', {
-    //             filter: {
-    //                 id: model.query.contributors
-    //             }
-    //         }).then(user => user.get('fullName'));
-    //         console.log(current_user_full_name);
-    //     }
-    //
-    //     var meta = model.get('meta');
-    //     controller.set('currentUser', current_user_full_name);
-    //     controller.set('pagination', meta.pagination);
-    // }
 });
