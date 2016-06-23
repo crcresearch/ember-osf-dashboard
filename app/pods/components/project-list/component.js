@@ -18,9 +18,8 @@ export default Ember.Component.extend(PaginatedComponentMixin, {
                 contributors: this.get('user_id')
             }
         };
-
-        this.queryForComponent('node', routeParams, userParams);
         console.log(this);
+        this.queryForComponent('node', routeParams, userParams);
     },
     init: function() {
         this._super();
@@ -35,7 +34,8 @@ export default Ember.Component.extend(PaginatedComponentMixin, {
             this.decrementProperty('page', 1);
             this.loadProfileList();
         },
-        goToPage: function() {
+        goToPage: function(pageNumber) {
+            console.log(this.page);
             this.set('page', pageNumber);
             this.loadProfileList();
         }

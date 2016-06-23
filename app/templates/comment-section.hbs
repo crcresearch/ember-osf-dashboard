@@ -1,0 +1,63 @@
+<!-- app/pods/projects/detail/index/comment_section.hbs -->
+<div class="ui threaded comments">
+    <h3 class="ui dividing header">Comments</h3>
+    {{#each model.comments as |comment|}}
+        <div class="comment">
+            <!--<a class="avatar">-->
+                <!--<img src="/images/avatar/small/joe.jpg">-->
+            <!--</a>-->
+
+            <div class="content">
+                <a class="author">{{comment.user.fullName}}</a>
+
+                <div class="metadata">
+                    <div class="date">{{comment.dateCreated}}</div>
+                </div>
+
+                <div class="text">
+                    <p>{{comment.content}}</p>
+                </div>
+
+                <div class="actions">
+                    <a class="reply">Reply</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="comments">
+            {{#each comment.replies as |reply|}}
+                <div class="comment">
+                    <!--<a class="avatar">-->
+                        <!--<img src="/images/avatar/small/joe.jpg">-->
+                    <!--</a>-->
+
+                    <div class="content">
+                        <a class="author">TEST</a>
+
+                        <div class="metadata">
+                            <div class="date">TEST</div>
+                        </div>
+
+                        <div class="text">
+                            <p>TEST</p>
+                        </div>
+
+                        <div class="actions">
+                            <a class="reply">Reply</a>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{/each}}
+
+    <form class="ui reply form">
+        <div class="ui field">
+        {{textarea id="add-comment-textarea" value=comment}}
+        </div>
+
+        <button class="ui primary submit labeled icon button" {{action 'addComment' comment currentUser model}}>
+            <i class="icon edit"></i> Add Comment
+        </button>
+    </form>
+</div>

@@ -3,20 +3,20 @@ import Ember from 'ember';
 // TODO: refactor permissions strings when https://github.com/CenterForOpenScience/ember-osf/pull/23/files#diff-7fd0bf247bef3c257e0fcfd7e544a338R5 is merged
 import permissions from 'ember-osf/const/permissions';
 
-var OSF_API_URL = "https://"
+var OSF_API_URL = "https://";
 
 export default Ember.Route.extend({
     model(params) {
         return this.store.findRecord('node', params.node_id);
     },
-
     setupController(controller, model) {
+        this._super(controller, model);
         controller.set('editedTitle', model.get('title'));
         controller.set('editedTitle', model.get('category'));
         controller.set('editedTitle', model.get('description'));
-        this._super(...arguments);
+        controller.set('currentUser', this.modelFor('application'));
+        console.log(controller.currentUser);
     },
-
     actions: {
         editExisting(title, description, category, isPublic) {
             // TODO: Should test PUT or PATCH
@@ -182,7 +182,66 @@ export default Ember.Route.extend({
             } else {
                 console.log('You do not have permissions to delete this project link.');
             }
-        }
+        },
+        addComment(commentText, currentUser) {
+            // var addCommentTextarea = $("#add-comment-textarea");
+            // var commentText = addCommentTextarea.val();
+            console.log('Add Comment Test', commentText);
+            var project = this.modelFor(this.routeName);
+
+            if (project.get('currentUserPermissions').indexOf(permissions.WRITE) !== -1) {
+                var comment = this.get('store').createRecord('comment', {
+                    content: commentText,
+                    page: 'node',
+
+                    type: 'nodes',
+                    target: project.id,
+
+                    dateCreated: new Date(),
+                    dateModified: new Date(),
+                    user: currentUser
+                });
+
+                project.get('comments').pushObject(comment);
+                project.save(comment);
+                console.log('comment', comment);
+                console.log('Comment Added.');
+            } else {
+                console.log('Error!');
+            }
+
+            // var url = OSF_API_URL + "/v2/nodes/" + node_id + "/comments/";
+            // var username = "admin";
+            // var password = "admin";
+            //
+            // var data = {
+            //     "image_name": "keyz182/test_container",
+            //     "image_tag": "latest",
+            //     "scripturl": script_url,
+            //     "scriptname": script_name,
+            //     "container_args": "python /mnt/" + script_name,
+            //     "dataurl": data_url,
+            //     "datapath": "/mnt/"
+            // };
+            //
+            // $.ajax(
+            // {
+            //     data: data,
+            //     type: "POST",
+            //     url: url,
+            //     headers: {"Authorization": "Basic " + btoa(username + ":" + password), "Access-Control-Allow-Origin": "*"},
+            //
+            //     success: function()
+            //     {
+            //         alert("Success");
+            //     },
+            //
+            //     error: function(XMLHttpRequest, textStatus, errorThrown)
+            //     {
+            //         alert(XMLHttpRequest.responseText);
+            //     }
+            // });
+        },
     },
     generateContributorMap(contributors) {
         // Maps all project contributors to format {contribID: {permission: "read|write|admin", bibliographic: "true|false"}}
@@ -217,7 +276,6 @@ export default Ember.Route.extend({
         }
         return false;
     },
-
     attemptContributorsUpdate(contribMap, project, editedPermissions, editedBibliographic) {
         if (this.canModifyContributor(null, contribMap)) {
             var promises = [];
@@ -233,7 +291,6 @@ export default Ember.Route.extend({
             console.log('Cannot update contributor(s)');
         }
     },
-
     modifyPermissions(contrib, project, editedPermissions) {
         return this.store.findRecord('contributor', contrib).then(function(contributor) {
             contributor.set('projectId', project.id);
@@ -241,7 +298,6 @@ export default Ember.Route.extend({
             contributor.save();
         });
     },
-
     modifyBibliographic(contrib, project, editedBibliographic) {
         return this.store.findRecord('contributor', contrib).then(function(contributor) {
             contributor.set('projectId', project.id);
@@ -249,7 +305,6 @@ export default Ember.Route.extend({
             contributor.save();
         });
     },
-
     attemptContributorRemoval(contrib, contribMap) {
         if (this.canModifyContributor(contrib, contribMap)) {
             contrib.deleteRecord();
@@ -258,42 +313,5 @@ export default Ember.Route.extend({
         } else {
             console.log('Cannot remove contributor');
         }
-    },
-
-    addComment: function(node_id, user) {
-        var add_comment_textarea = $("#add-comment-textarea");
-        var comment_text = add_comment_textarea.val();
-
-        var url = OSF_API_URL + "/v2/nodes/" + node_id + "/comments/";
-        // var username = "admin";
-        // var password = "admin";
-        //
-        // var data = {
-        //     "image_name": "keyz182/test_container",
-        //     "image_tag": "latest",
-        //     "scripturl": script_url,
-        //     "scriptname": script_name,
-        //     "container_args": "python /mnt/" + script_name,
-        //     "dataurl": data_url,
-        //     "datapath": "/mnt/"
-        // };
-        //
-        // $.ajax(
-        // {
-        //     data: data,
-        //     type: "POST",
-        //     url: url,
-        //     headers: {"Authorization": "Basic " + btoa(username + ":" + password), "Access-Control-Allow-Origin": "*"},
-        //
-        //     success: function()
-        //     {
-        //         alert("Success");
-        //     },
-        //
-        //     error: function(XMLHttpRequest, textStatus, errorThrown)
-        //     {
-        //         alert(XMLHttpRequest.responseText);
-        //     }
-        // });
     }
 });

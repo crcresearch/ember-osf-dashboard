@@ -56,9 +56,7 @@ Router.map(function() {
         });
     });
     this.route('prereg');
-    this.route('widgets/project-list', {
-        path: '/project-list'
-    });
+    this.route('comment-section');
 });
 
 export default Router;
