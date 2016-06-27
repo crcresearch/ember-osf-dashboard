@@ -7,12 +7,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     session: Ember.inject.service(),
     model() {
         let user = this.modelFor('application');
-        // var userParams = {
-        //     filter: {
-        //         contributors: ''
-        //     }
-        // };
-
+        
         if(user) {
             return user;
             // userParams['filter']['contributors'] = user.id;

@@ -8,7 +8,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         preregister(name, files) {
             let fileNames = files.mapBy('name').join(', ');
 
-            // TODO: This page is just a file-chooser demo at this point
+            // TODO:20 This page is just a file-chooser demo at this point
             window.alert(`Files: ${fileNames}`);
 
             // store.createRecord('node', { title: name, ... })

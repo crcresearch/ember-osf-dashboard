@@ -14,13 +14,21 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, PaginatedRouteMixin, 
             }
         };
 
-        userParams['filter']['contributors'] = user.id;
-        return this.queryForPage('node', routeParams, userParams);
-
-        // if (user) {
-        //     return user.get('nodes'); // Fetch from `/users/me/nodes/`
-        // } else {
-        //     // return this.get('store').findRecord('user', 'me').then(user => user.get('nodes'));
-        // }
+        if(user) {
+            userParams['filter']['contributors'] = user.id;
+            return this.queryForPage('node', routeParams, userParams);
+            // return user.get('nodes'); // Fetch from `/users/me/nodes/`
+        } else {
+            console.log(user);
+            this.get('store').findRecord('user', 'me').then(user => user);
+            userParams['filter']['contributors'] = user.id;
+            return this.queryForPage('node', routeParams, userParams);
+            // return this.get('store').findRecord('user', 'me').then(user => user.get('nodes'));
+        }
+    },
+    actions: {
+        reloadProjectListRoute: function() {
+            this.refresh();
+        }
     }
 });

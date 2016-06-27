@@ -11,11 +11,10 @@ export default Ember.Component.extend({
     responseError: '',
     responseSuccess: '',
     actions: {
-        requestCreate: function(name) {
-            $('.ui.modal.create-project').modal('setting', 'closable', false).modal('show', name);
+        requestProjectCreate: function(name) {
+            $('.ui.modal.create.project').modal('setting', 'closable', false).modal('show');
         },
-        confirmCreate: function() {
-            var post = this.get('model');
+        confirmProjectCreate: function(name) {
             var self = this;
             var project = this.get('store').createRecord('node', {
                 title: this.get('title'),
@@ -23,30 +22,36 @@ export default Ember.Component.extend({
                 description: this.get('description') || null
             });
 
-            console.log(post);
-            console.log(this);
-
             project.save().then(function() {
                 console.log("Success!");
                 self.set('responseError', '');
                 self.set('responseSuccess', `Your project was created successfully!`);
                 self.set('title', '');
                 self.set('description', '');
+                Ember.run.later(name, function() {
+                    $('.ui.modal.response.message').modal().modal('show');
+                    Ember.run.later(function() {
+                        $('.ui.modal.response.message').modal().modal('hide');
+                        self.sendAction('reloadRoute');
+                    }, 2000);
+                }, 300);
             }, function(error) {
                 console.log("Error Saving Record: " + error.message);
                 self.set('responseSuccess', '');
                 self.set('responseError', 'There was an error creating your project.');
                 self.set('title', '');
                 self.set('description', '');
+                Ember.run.later(name, function() {
+                    $('.ui.modal.response.message').modal().modal('show');
+                }, 300);
             });
         },
-        responseMessage: function(name) {
-            $('.ui.modal.response-message').modal().modal('show', name);
-        },
-        cancelCreate: function(name) {
+        cancelProjectCreate: function(name) {
             this.set('title', '');
             this.set('description', '');
-            $('.ui.modal').modal().modal('hide');
+            // self.set('responseError', '');
+            // self.set('responseSuccess', '');
+            $('.ui.modal.create.project').modal().modal('hide');
         }
     }
 });

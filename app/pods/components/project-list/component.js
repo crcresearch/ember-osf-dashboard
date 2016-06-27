@@ -35,7 +35,6 @@ export default Ember.Component.extend(PaginatedComponentMixin, {
             this.loadProfileList();
         },
         goToPage: function(pageNumber) {
-            console.log(this.page);
             this.set('page', pageNumber);
             this.loadProfileList();
         }

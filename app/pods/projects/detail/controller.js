@@ -25,30 +25,20 @@ export default Ember.Controller.extend(TaggableMixin, {
             var contributorId = target.value;
             this.editedBibliographic[contributorId] = bibliographic;
         },
-        requestDelete: function(project, name) {
-            console.log(project);
+        requestDelete(project, name) {
             this.set('selectedModel', project);
             this.selectedModel.deleteRecord();
             $('.ui.modal').modal('setting', 'closable', false).modal('show');
         },
-        confirmDelete: function() {
-            console.log(this.selectedModel);
-            var page = this.get('model');
-
+        confirmDelete() {
+            var self = this;
             this.selectedModel.save().then(function() {
-                page.reload();
+                self.transitionToRoute('projects.index');
             });
         },
-        cancelDelete: function() {
+        cancelDelete() {
             console.log(this.selectedModel);
             this.selectedModel.rollbackAttributes();
-        },
-        destroyProject: function(project) {
-            var page = this.get('model');
-
-            project.destroyRecord().then(function() {
-                page.reload();
-            });
         },
         closeMessage: function() {
             this.set('responseSuccess', '');

@@ -1,11 +1,12 @@
 // app/pods/projects/detail/route.js
 import Ember from 'ember';
-// TODO: refactor permissions strings when https://github.com/CenterForOpenScience/ember-osf/pull/23/files#diff-7fd0bf247bef3c257e0fcfd7e544a338R5 is merged
+// TODO:50 refactor permissions strings when https://github.com/CenterForOpenScience/ember-osf/pull/23/files#diff-7fd0bf247bef3c257e0fcfd7e544a338R5 is merged
 import permissions from 'ember-osf/const/permissions';
 
 var OSF_API_URL = "https://";
 
 export default Ember.Route.extend({
+    selectedModel: '',
     model(params) {
         return this.store.findRecord('node', params.node_id);
     },
@@ -15,11 +16,10 @@ export default Ember.Route.extend({
         controller.set('editedTitle', model.get('category'));
         controller.set('editedTitle', model.get('description'));
         controller.set('currentUser', this.modelFor('application'));
-        console.log(controller.currentUser);
     },
     actions: {
         editExisting(title, description, category, isPublic) {
-            // TODO: Should test PUT or PATCH
+            // TODO:10 Should test PUT or PATCH
             var project = this.modelFor(this.routeName);
             if (project.get('currentUserPermissions').indexOf(permissions.WRITE) !== -1) {
                 if (title) {
@@ -133,6 +133,7 @@ export default Ember.Route.extend({
                 console.log('You do not have permissions to create this component');
             }
         },
+        // TODO: Is this necessary?
         addChildren(title1, title2) {
             var project = this.modelFor(this.routeName);
             if (project.get('currentUserPermissions').indexOf(permissions.WRITE) !== -1) {
@@ -151,7 +152,7 @@ export default Ember.Route.extend({
                 console.log('You do not have permissions to create this component');
             }
         },
-        deleteProject() {
+        destroyProject() {
             var project = this.modelFor(this.routeName);
             if (project.get('currentUserPermissions').indexOf(permissions.WRITE) !== -1) {
                 project.one('didDelete', this, function() {
@@ -159,7 +160,7 @@ export default Ember.Route.extend({
                 });
                 project.destroyRecord();
             } else {
-                console.log('You do not have permissions to delete this project');
+                console.log('You do not have permissions to destroy this project');
             }
         },
         addProjectLink(targetProjectId) {

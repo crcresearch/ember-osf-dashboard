@@ -56,7 +56,6 @@ Router.map(function() {
         });
     });
     this.route('prereg');
-    this.route('comment-section');
 });
 
 export default Router;

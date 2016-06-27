@@ -1,43 +1,45 @@
 <!-- app/pods/projects/index/template.hbs -->
-<div class="ui stackable two column grid">
+<div class="ui two column grid">
     <div class="column">
-        <h2 class="ui header">My Projects </h2>
+        <h2 class="ui header">My Projects</h2>
     </div>
-    <div class="column">
-        {{project-create model=model}}
+    <div class="right aligned column ">
+        {{project-create reloadRoute='reloadProjectListRoute'}}
     </div>
 </div>
 
 {{!-- Project List --}}
-<div class="ui cards">
+<div class="ui four column doubling grid">
     {{#each model as |project|}}
-        <div class="ui card">
-            <div class="content">
-                <div class="header">{{project.title}}</div>
-            </div>
-            <div class="content">
-                <h4 class="ui sub header">Detail</h4>
-                <div class="ui small feed">
-                    <div class="event">
-                        <div class="content">
-                            <div class="summary">
-                                <div class="ui list">
-                                    <div class="item">
-                                        <div class="content">
-                                            <a class="header">Category</a>
-                                            <div class="description">{{project.category}}</div>
+        <div class="column">
+            <div class="ui fluid card">
+                <div class="content">
+                    <div class="header">{{project.title}}</div>
+                </div>
+                <div class="content">
+                    <h4 class="ui sub header">Detail</h4>
+                    <div class="ui small feed">
+                        <div class="event">
+                            <div class="content">
+                                <div class="summary">
+                                    <div class="ui list">
+                                        <div class="item">
+                                            <div class="content">
+                                                <a class="header">Category</a>
+                                                <div class="description">{{project.category}}</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="content">
-                                            <a class="header">Date Created</a>
-                                            <div class="description">{{moment-format project.dateCreated}}</div>
+                                        <div class="item">
+                                            <div class="content">
+                                                <a class="header">Date Created</a>
+                                                <div class="description">{{moment-format project.dateCreated}}</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="content">
-                                            <a class="header">Date Modified</a>
-                                            <div class="description">{{moment-format project.dateModified}}</div>
+                                        <div class="item">
+                                            <div class="content">
+                                                <a class="header">Date Modified</a>
+                                                <div class="description">{{moment-format project.dateModified}}</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -45,14 +47,16 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="extra content">
-                <a href="{{project.links.html}}" target="_blank" class="ui blue button">View on OSF</a>
-                {{link-to 'Detail' 'projects.detail' project.id class="ui orange button"}}
+                <div class="extra content">
+                    <a href="{{project.links.html}}" target="_blank" class="ui blue button">View on OSF</a>
+                    {{link-to 'Detail' 'projects.detail' project.id class="ui orange button"}}
+                </div>
             </div>
         </div>
     {{/each}}
 </div>
+
+{{!-- Pagination --}}
 <div class="ui segment">
     {{pagination-control-ui
         currentPage=page

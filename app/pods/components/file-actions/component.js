@@ -56,7 +56,7 @@ export default Ember.Component.extend({
             let file = this.get('file');
             let store = this.get('store');
             store.findRecord('file', folderId).then((folder) => {
-                // TODO: moving to file-provider root
+                // TODO:40 moving to file-provider root
                 let options = {
                     node: this.get('moveNode'),
                     provider: folder.get('provider'),

@@ -4,7 +4,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
     model(params) {
-        // TODO: verify this file actually belongs to the parent project?
+        // TODO:60 verify this file actually belongs to the parent project?
         return this.store.findRecord('file', params.file_id);
     },
 

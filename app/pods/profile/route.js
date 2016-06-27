@@ -16,7 +16,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     actions: {
         editExisting(value) {
-            // TODO: Should test PUT or PATCH
+            // TODO:0 Should test PUT or PATCH
             var user = this.modelFor(this.routeName);
             user.set('fullName', value);
             user.save();
