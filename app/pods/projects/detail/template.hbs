@@ -56,14 +56,16 @@
             </button>
         {{/if}}
 
-        {{!-- Delete Project Button --}}
-        <button class="ui red danger button" {{action "destroyProject"}}>
-            <i class="warning icon"></i>
-            Destroy this Project
-        </button>
-        <button class="ui red danger button" {{action 'requestDelete' model delete-project}}>
+        {{!-- Request Delete Project Button --}}
+        {{!-- <button class="ui orange button" {{action 'requestDelete' model delete-project}}>
             <i class="warning icon"></i>
             Delete this Project
+        </button> --}}
+        {{project-delete project=model name='delete-project' transitionTo='transitionToProjectList'}}
+        {{!-- Destroy Project Button --}}
+        <button class="ui red button" {{action "destroyProject"}}>
+            <i class="warning icon"></i>
+            Destroy this Project
         </button>
     </div>
 </div>
@@ -257,7 +259,7 @@
 </div>
 
 {{!-- Project Delete Widget Modal --}}
-{{#ui-modal name="delete-project" class="delete-project" onApprove=(action 'confirmDelete') onDeny=(action 'cancelDelete')}}
+{{!-- {{#ui-modal name="delete-project" class="delete-project" onApprove=(action 'confirmDelete') onDeny=(action 'cancelDelete')}}
     <i class="close icon"></i>
     <div class="header">
         Delete Project?
@@ -274,7 +276,7 @@
             <i class="checkmark icon"></i>
         </button>
     </div>
-{{/ui-modal}}
+{{/ui-modal}} --}}
 
 {{outlet}} <!-- FIXME: Shouldn't Need this-->
 {{partial 'comment-section'}}

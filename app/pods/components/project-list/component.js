@@ -6,7 +6,7 @@ import PaginatedComponentMixin from 'ember-osf-dashboard/mixins/paginated-compon
 export default Ember.Component.extend(PaginatedComponentMixin, {
     layout,
     tagName: 'project-list',
-    classNames: ['project-list'],
+    classNames: ['project', 'list'],
     loadProfileList: function() {
         var routeParams = {
             page: this.get('page'),

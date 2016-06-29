@@ -7,7 +7,7 @@ export default Ember.Component.extend({
     store: Ember.inject.service(),
     session: Ember.inject.service(),
     tagName: 'project-create',
-    classNames: ['project-create'],
+    classNames: ['project', 'create'],
     responseError: '',
     responseSuccess: '',
     actions: {

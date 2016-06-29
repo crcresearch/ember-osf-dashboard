@@ -184,6 +184,9 @@ export default Ember.Route.extend({
                 console.log('You do not have permissions to delete this project link.');
             }
         },
+        transitionToProjectList() {
+            this.transitionTo('projects.index');
+        },
         addComment(commentText, currentUser) {
             // var addCommentTextarea = $("#add-comment-textarea");
             // var commentText = addCommentTextarea.val();
