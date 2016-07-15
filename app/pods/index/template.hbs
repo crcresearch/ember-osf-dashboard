@@ -1,9 +1,14 @@
 <!-- app/pods/index/template.hbs -->
+{{title "Home"}}
 <h1 class="ui header">
     Welcome {{currentUser}}
 </h1>
 
+{{!-- Project List Component --}}
 {{project-list user_id=model.id}}
+
+{{!-- OSF File-Widget Component --}}
+{{file-widget preUpload=(action 'preUpload') buildUrl=(action 'buildUrl') listeners=dropzoneOptions options=dropzoneOptions}}
 
 {{!-- <!-- Execution Dashboard -->
 <div class="ui segment">

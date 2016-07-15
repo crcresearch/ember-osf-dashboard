@@ -14,20 +14,24 @@ You will need the following things properly installed on your computer.
 *   [PhantomJS](http://phantomjs.org/)
 *   [ember-osf](http://github.com/centerforopenscience/ember-osf.git)
 
-## Installation and Configuration
+### Third-Party Installation
+
+*   Download and install [Node.js](https://nodejs.org/en/download/) and NPM
+*   Use `npm install -g ember-cli` if you haven't installed ember yet
+*   Ember recommends you also install PhantomJS with `npm install -g phantomjs`
+*   Use `npm install -g bower` if you haven't installed bower
+*   `git clone https://github.com/centerforopenscience/ember-osf.git`
+*   Read instructions on the ember-osf repository for installation and configuration
+
+## Ember OSF Dashboard Installation and Configuration
 
 *   `git clone https://github.com/crcresearch/ember-osf-dashboard.git develop`
-*   `git clone https://github.com/centerforopenscience/ember-osf.git`
 *   `cd` into the new app directory
 *   `npm install`
-*   Use `npm install -g bower` if you haven't installed bower
 *   `bower install`
-*   Use `npm install -g ember-cli` if you haven't installed ember yet
-*   Ember recommends you also install phantomjs with 'npm install -g phantomjs`
-*   Read instruction on the ember-osf repository for installation and configuration.
 *   `ember install ../ember-osf`
 *   `npm link ../ember-osf`
-*   Open the config/local.yml file, uncomment the stage section and add your token and client ID.
+*   Open the config/local.yml file, uncomment the stage section and add your token, client ID, and redirect URI.
 *   Find the `index.js` file in the _extra folder and copy and overwrite the `index.js` file in
 `node_modules/semantic-ui-ember/` directory.
 

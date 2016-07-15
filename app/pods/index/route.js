@@ -5,9 +5,10 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
     store: Ember.inject.service(),
     session: Ember.inject.service(),
+    // TODO: Compare and test to ember-osf dummy app
     model() {
         let user = this.modelFor('application');
-        
+
         if(user) {
             return user;
             // userParams['filter']['contributors'] = user.id;
