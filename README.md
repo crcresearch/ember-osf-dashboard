@@ -13,10 +13,16 @@ You will need the following things properly installed on your computer.
 *   [Ember CLI](http://ember-cli.com/)
 *   [PhantomJS](http://phantomjs.org/)
 *   [ember-osf](http://github.com/centerforopenscience/ember-osf.git)
+*   [Nodeenv](https://ekalinin.github.io/nodeenv/)
+*   Python & pip
 
 ### Third-Party Installation
 
 *   Download and install [Node.js](https://nodejs.org/en/download/) and NPM
+*   Install Nodeenv `sudo pip install nodeenv`
+*   Create a folder for your project and then `cd` into the directory
+*   Create a new Node.js environment `nodeenv env-node`
+*   Activate the new environment `. env/bin/activate`
 *   Use `npm install -g ember-cli` if you haven't installed ember yet
 *   Ember recommends you also install PhantomJS with `npm install -g phantomjs`
 *   Use `npm install -g bower` if you haven't installed bower
@@ -34,6 +40,33 @@ You will need the following things properly installed on your computer.
 *   Open the config/local.yml file, uncomment the stage section and add your token, client ID, and redirect URI.
 *   Find the `index.js` file in the _extra folder and copy and overwrite the `index.js` file in
 `node_modules/semantic-ui-ember/` directory.
+
+When you are done your basic directory structure should be like:
+/home/username/project-folder/
+    |--ember-osf-dashboard
+        |--_extra
+        |--.git
+        |--app
+        |--bower_components
+        |--config
+        |--node_modules
+        |--public
+        |--tests
+        |--vendor
+        .bowerrc
+        etc.....
+    |--ember-osf
+        |--.git
+        |--.github
+        |--addon
+        |--app
+        |--blueprints
+        |--config
+        |--node_modules
+        |--tests
+        |--vendor
+        etc...
+    |--env-node
 
 ## Running / Development
 

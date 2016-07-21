@@ -17,6 +17,8 @@
 npm-debug.log
 testem.log
 /.imdone
+/config/local.yml
+/_extra/extra.txt
 
 # .env
 # .env-local
