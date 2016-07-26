@@ -12,7 +12,7 @@ You will need the following things properly installed on your computer.
 *   [Bower](http://bower.io/)
 *   [Ember CLI](http://ember-cli.com/)
 *   [PhantomJS](http://phantomjs.org/)
-*   [ember-osf](http://github.com/centerforopenscience/ember-osf.git)
+*   [ember-osf](http://github.com/cwilli34/ember-osf.git)
 *   [Nodeenv](https://ekalinin.github.io/nodeenv/)
 *   Python & pip
 
