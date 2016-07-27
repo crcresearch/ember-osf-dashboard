@@ -4,10 +4,10 @@ import layout from './template';
 
 export default Ember.Component.extend({
     layout,
+    tagName: '',
+    classNames: ['project', 'create'],
     store: Ember.inject.service(),
     session: Ember.inject.service(),
-    tagName: 'project-create',
-    classNames: ['project', 'create'],
     responseError: '',
     responseSuccess: '',
     actions: {

@@ -19,6 +19,7 @@ testem.log
 /.imdone
 /config/local.yml
 /_extra/extra.txt
+/.idea
 
 # .env
 # .env-local

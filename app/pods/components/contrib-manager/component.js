@@ -1,6 +1,6 @@
+// app/pods/components/contrib-manager/component.js
 import Ember from 'ember';
 import layout from './template';
-
 import permissions from 'ember-osf/const/permissions';
 
 export default Ember.Component.extend({
@@ -10,6 +10,8 @@ export default Ember.Component.extend({
     layout: layout,
     permissionChanges: {},
     bibliographicChanges: {},
+    tagName: '',
+    classNames: ['contributors'],
     actions: {
         addContributor(userId, permission, isBibliographic) {
             this.sendAction('addContributor', userId, permission, isBibliographic);

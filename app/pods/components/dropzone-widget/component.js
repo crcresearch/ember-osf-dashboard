@@ -4,6 +4,6 @@ import layout from './template';
 
 export default DropzoneWidget.extend({
     layout,
-    // tagName: ['dropzone-widget'],
-    // classNames: ['dropzone', 'widget']
+    tagName: ['dropzone-widget'],
+    classNames: ['dropzone', 'widget']
 });
