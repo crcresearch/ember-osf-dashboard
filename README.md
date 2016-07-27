@@ -26,8 +26,8 @@ You will need the following things properly installed on your computer.
 *   Use `npm install -g ember-cli` if you haven't installed ember yet
 *   Ember recommends you also install PhantomJS with `npm install -g phantomjs`
 *   Use `npm install -g bower` if you haven't installed bower
-*   `git clone https://github.com/centerforopenscience/ember-osf.git`
-*   Read instructions on the ember-osf repository for installation and configuration
+*   `git clone https://github.com/crcresearch/ember-osf`
+*   Read instructions on the ember-osf repository for installation and configuration. Note we use fork on CRC github, it is syncronized monthly with primary OSF repository
 
 ## Ember OSF Dashboard Installation and Configuration
 
