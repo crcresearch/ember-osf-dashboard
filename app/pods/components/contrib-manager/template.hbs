@@ -1,6 +1,62 @@
+<h2> Add contributor </h2>
+<div class="form">
+    <div class="form-group">
+        <label> User ID </label> {{input value=newContributorId}}
+    </div>
+    <div class="form-group">
+        <label> Permissions: </label>
+        <div class="input-group">{{radio-button name="permission" value=READ checked=newContributorPermissions}} Read</div>
+        <div class="input-group">{{radio-button name="permission" value=WRITE checked=newContributorPermissions}} Read + Write</div>
+        <div class="input-group">{{radio-button name="permission" value=ADMIN checked=newContributorPermissions}} Administrator</div>
+    </div>
+    <div class="form-group">
+        <label> Bibliographic: </label>
+        <div class="input-group">{{radio-button name="bibliographic" value=true checked=newContributorIsBibliographic}} Bibliographic </div>
+        <div class="input-group">{{radio-button name="bibliographic" value=false checked=newContributorIsBibliographic}} Non-Bibliographic </div>
+    </div>
+    <div class="form-group">
+        <button {{action 'addContributor' newContributorId newContributorPermissions newContributorIsBibliographic}} class="btn btn-primary">Add</button>
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th> Name </th>
+        <th> Permissions </th>
+        <th> Bibliographic </th>
+        <th> </th>
+    </tr>
+    {{#each contributors as |contrib|}}
+        <tr>
+            <td>
+                {{contrib.id}}
+            </td>
+            <td>
+                {{if contrib.unregisteredContributor contrib.unregisteredContributor contrib.users.fullName}}
+            </td>
+            <td>
+                <select onchange={{action (action 'permissionChange' contrib) value='target.value'}} >
+                    <option value=READ selected={{if (eq contrib.permission READ) true false}}> Read </option>
+                    <option value=WRITE selected={{if (eq contrib.permission WRITE) true false}}> Read + Write </option>
+                    <option value=ADMIN selected={{if (eq contrib.permission ADMIN) true false}}> Administrator </option>
+                </select>
+            </td>
+            <td>
+                <input onchange={{action (action 'bibliographicChange' contrib) value='target.checked'}} checked={{if contrib.bibliographic true false}} type="checkbox" name="bibliographic">
+            </td>
+            <td>
+                <button {{action 'removeContributor' contrib}} class="btn btn-danger"> Remove </button>
+            </td>
+        </tr>
+    {{/each}}
+</table>
+<button {{action 'updateContributors'}} class="btn btn-primary"> Save changes </button>
+
+
 <!-- app/pods/components/contrib-manager/template.hbs -->
 {{!-- Project Contributors --}}
-<div class="ui segments">
+{{!-- <div class="ui segments">
     <div class="ui segment">
         <div class="ui two column grid">
             <div class="column">
@@ -51,9 +107,10 @@
             </tr>
             </tbody>
         </table>
-    </div>
+    </div> --}}
+
     {{!-- Add Contributor --}}
-    <div class="ui segment">
+    {{!-- <div class="ui segment">
         <div class="ui form">
             <h5 class="ui header">Add contributor</h5>
             <div class="ui field">
@@ -63,28 +120,28 @@
             <div class="inline fields">
                 <label for="permision">Permissions</label>
                 <div class="inline field">
-                    {{ui-radio name="permission" value=READ label="Read" checked=newContributorPermissions}}
+                    {{ui-radio name="permission" value=READ label="Read" current=newContributorPermissions}}
                 </div>
                 <div class="inline field">
-                    {{ui-radio name="permission" value=WRITE label="Read + Write" checked=newContributorPermissions}}
+                    {{ui-radio name="permission" value=WRITE label="Read + Write" current=newContributorPermissions}}
                 </div>
                 <div class="field">
-                    {{ui-radio name="permission" value=ADMIN label="Administrator" checked=newContributorPermissions}}
+                    {{ui-radio name="permission" value=ADMIN label="Administrator" current=newContributorPermissions}}
                 </div>
             </div>
             <div class="inline fields">
                 <label for="bibliographic">Bibliographic</label>
                 <div class="field">
                     {{ui-radio name="bibliographic" value=true label="Bibliographic"
-                               checked=newContributorIsBibliographic}}
+                               current=newContributorIsBibliographic}}
                 </div>
                 <div class="field">
                     {{ui-radio name="bibliographic" value=false label="Non-Bibliographic"
-                               checked=newContributorIsBibliographic}}
+                               current=newContributorIsBibliographic}}
                 </div>
             </div>
             <button {{action 'addContributor' newContributorId newContributorPermissions newContributorIsBibliographic}}
                     class="ui green button">Add</button>
         </div>
     </div>
-</div>
+</div> --}}

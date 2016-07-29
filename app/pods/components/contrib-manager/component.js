@@ -13,6 +13,7 @@ export default Ember.Component.extend({
     tagName: '',
     classNames: ['contributors'],
     actions: {
+        // TODO: Reset values after you addContributor and refresh
         addContributor(userId, permission, isBibliographic) {
             this.sendAction('addContributor', userId, permission, isBibliographic);
         },
