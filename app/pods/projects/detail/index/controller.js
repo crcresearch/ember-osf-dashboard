@@ -24,10 +24,10 @@ export default Ember.Controller.extend(CommentableMixin, TaggableMixin, NodeActi
                 })
                 .catch(() => this.set('isSaving', false));
         },
-        requestDelete(project, name) {
+        requestDelete(project, name) { // jshint ignore:line
             this.set('selectedModel', project);
             this.selectedModel.deleteRecord();
-            $('.ui.modal').modal('setting', 'closable', false).modal('show');
+            $('.ui.modal').modal('setting', 'closable', false).modal('show'); // jshint ignore:line
         },
         confirmDelete() {
             var self = this;

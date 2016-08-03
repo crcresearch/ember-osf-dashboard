@@ -18,7 +18,7 @@ export default Ember.Component.extend(PaginatedComponentMixin, {
                 contributors: this.get('user_id')
             }
         };
-        console.log(this);
+        console.log(userParams);
         this.queryForComponent('node', routeParams, userParams);
     },
     init: function() {

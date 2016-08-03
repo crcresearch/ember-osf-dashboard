@@ -4,6 +4,7 @@ import OsfTokenLoginControllerMixin from 'ember-osf/mixins/osf-token-login-contr
 import {getAuthUrl} from 'ember-osf/utils/auth';
 
 export default Ember.Controller.extend(OsfTokenLoginControllerMixin, {
+    session: Ember.inject.service(),
     toast: Ember.inject.service(),
     authUrl: getAuthUrl(),
     actions: {
