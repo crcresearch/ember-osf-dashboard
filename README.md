@@ -1,3 +1,5 @@
+# DEVELOPMENT MOVED TO [EMBER-CRAFT-REPOSITORY](https://github.com/crcresearch/ember-craft-repository/) UNTIL FURTHER NOTICE. THIS REPOSITORY IS NOT UP TO DATE.
+
 # Ember OSF Dashboard
 
 This project is for creating a Ember Dashboard on top of [OSF](http://osf.io). Semantic-UI has been added to the dependencies and installs with bower.
